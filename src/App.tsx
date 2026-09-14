@@ -21,6 +21,7 @@ import { SampleImageOption } from './utils/sampleImages';
 const DEFAULT_SETTINGS: CompressionSettings = {
   mode: 'target-kb',
   targetKB: 50,
+  targetUnit: 'KB',
   manualQuality: 80,
   outputFormat: 'image/jpeg',
   width: 0,
@@ -43,6 +44,20 @@ export default function App() {
   const [showFaqModal, setShowFaqModal] = useState(false);
 
   const activeItem = images.find((img) => img.id === activeId) || images[0];
+
+  const workspaceRef = useRef<HTMLDivElement>(null);
+  const prevImagesLengthRef = useRef(0);
+
+  // Auto-scroll to workspace when a new image is uploaded
+  useEffect(() => {
+    if (images.length > prevImagesLengthRef.current && workspaceRef.current) {
+      // Small delay to ensure render is complete
+      setTimeout(() => {
+        workspaceRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+    prevImagesLengthRef.current = images.length;
+  }, [images.length]);
 
   // Debounce ref for live compression on settings adjustments
   const debounceTimerRef = useRef<number | null>(null);
@@ -130,10 +145,8 @@ export default function App() {
         const width = img.naturalWidth || 800;
         const height = img.naturalHeight || 600;
 
-        // Default format: if PNG or WebP keep, else JPEG
-        let defaultFormat: OutputFormat = 'image/jpeg';
-        if (file.type === 'image/webp') defaultFormat = 'image/webp';
-        if (file.type === 'image/png') defaultFormat = 'image/png';
+        // Default to WebP for best compression outcomes out of the box
+        let defaultFormat: OutputFormat = 'image/webp';
 
         const itemSettings: CompressionSettings = {
           ...DEFAULT_SETTINGS,
@@ -330,17 +343,17 @@ export default function App() {
       />
 
       {/* Main Container */}
-      <main className="mx-auto flex-1 w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-8">
+      <main className="mx-auto flex-1 w-full max-w-7xl px-2 py-3 sm:px-6 sm:py-8 lg:px-8 space-y-4 sm:space-y-8">
         
         {/* Top Monetization Slot */}
         <AdPlacement slot="top-banner" className="mb-2" />
 
         {/* Hero Title & Tool Tagline */}
-        <div className="text-center space-y-2 max-w-3xl mx-auto">
-          <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl text-white">
+        <div className="text-center space-y-1.5 sm:space-y-2 max-w-3xl mx-auto px-2 sm:px-0">
+          <h1 className="text-xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
             Image Resizer & Target KB Compressor
           </h1>
-          <p className="text-sm sm:text-base text-zinc-400">
+          <p className="text-[10px] sm:text-base text-zinc-400">
             Shrink image file size to exact <span className="text-blue-400 font-semibold">20KB, 50KB, 100KB, or custom sizes</span> in milliseconds. Zero server latency, 100% browser-side privacy.
           </p>
         </div>
@@ -354,7 +367,7 @@ export default function App() {
 
         {/* Workspace: Active Image Controls & Preview */}
         {activeItem && (
-          <div className="space-y-6 pt-2">
+          <div className="space-y-4 sm:space-y-6 pt-2" ref={workspaceRef}>
             {/* Batch queue manager if multiple images uploaded */}
             {images.length > 1 && (
               <BatchQueue
@@ -373,9 +386,9 @@ export default function App() {
             )}
 
             {/* Main Interactive Grid (Controls Panel + Live Preview Card) */}
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 items-start">
+            <div className="flex flex-col lg:grid lg:grid-cols-12 gap-3 sm:gap-6 items-start">
               {/* Left Column: Settings Panel (5 cols on lg) */}
-              <div className="lg:col-span-5 space-y-6">
+              <div className="order-2 lg:order-1 lg:col-span-5 space-y-3 sm:space-y-6 w-full">
                 <ControlsPanel
                   settings={activeItem.settings}
                   onChange={handleSettingsChange}
@@ -391,7 +404,14 @@ export default function App() {
               </div>
 
               {/* Right Column: Interactive Preview & Comparisons (7 cols on lg) */}
-              <div className="lg:col-span-7 space-y-6">
+              <div className="order-1 lg:order-2 lg:col-span-7 space-y-3 sm:space-y-6 w-full">
+                {/* Mobile scroll hint */}
+                <div className="lg:hidden flex items-center justify-center py-2 px-3 bg-zinc-900/40 rounded-xl border border-zinc-800/60 shadow-inner">
+                  <p className="text-[11px] font-medium text-zinc-300">
+                    <span className="text-blue-400 animate-pulse">↓ For more settings scroll down ↓</span>
+                  </p>
+                </div>
+
                 <PreviewCard
                   item={activeItem}
                   onDownload={() => handleDownloadItem(activeItem)}

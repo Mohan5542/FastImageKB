@@ -15,6 +15,7 @@ export interface DimensionPreset {
 export interface CompressionSettings {
   mode: CompressionMode;
   targetKB: number;
+  targetUnit?: 'KB' | 'MB';
   manualQuality: number; // 1 to 100
   outputFormat: OutputFormat;
   width: number;

@@ -51,30 +51,31 @@ export const BatchQueue: React.FC<BatchQueueProps> = ({
   const allDone = items.every((it) => it.status === 'done');
 
   return (
-    <div className="rounded-2xl border border-zinc-800/80 bg-zinc-900/60 p-5 shadow-lg backdrop-blur-sm space-y-4">
+    <div className="rounded-2xl border border-zinc-800/80 bg-zinc-900/60 p-4 sm:p-5 shadow-lg backdrop-blur-sm space-y-3 sm:space-y-4">
       {/* Batch Header */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-800/80 pb-3.5">
-        <div className="flex items-center gap-2">
-          <Layers className="h-4 w-4 text-blue-400" />
-          <h3 className="text-sm font-semibold text-white">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-800/80 pb-3 sm:pb-3.5">
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <Layers className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-blue-400" />
+          <h3 className="text-xs sm:text-sm font-semibold text-white">
             Queue ({items.length} {items.length === 1 ? 'image' : 'images'})
           </h3>
           {totalSavedBytes > 0 && (
-            <span className="rounded-full bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 text-[11px] font-bold text-emerald-400">
-              Total Saved: {formatBytes(totalSavedBytes)} (−{totalReductionPct}%)
+            <span className="hidden sm:inline-block rounded-full bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 text-[10px] sm:text-[11px] font-bold text-emerald-400">
+              Saved: {formatBytes(totalSavedBytes)} (−{totalReductionPct}%)
             </span>
           )}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           <button
             type="button"
             onClick={onAddMoreClick}
-            className="flex items-center gap-1 rounded-lg border border-zinc-700 bg-zinc-800 px-2.5 py-1 text-xs font-medium text-zinc-300 transition-colors hover:border-zinc-600 hover:text-white"
+            className="flex items-center gap-1 rounded-lg border border-zinc-700 bg-zinc-800 px-2 py-1 sm:px-2.5 sm:py-1 text-[10px] sm:text-xs font-medium text-zinc-300 transition-colors hover:border-zinc-600 hover:text-white"
             id="btn-add-more-images"
           >
-            <Plus className="h-3.5 w-3.5" />
-            <span>Add More</span>
+            <Plus className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+            <span className="hidden sm:inline">Add More</span>
+            <span className="inline sm:hidden">Add</span>
           </button>
 
           {items.length > 1 && (
@@ -82,11 +83,12 @@ export const BatchQueue: React.FC<BatchQueueProps> = ({
               type="button"
               onClick={onDownloadAllZip}
               disabled={!allDone || isDownloadingZip}
-              className="flex items-center gap-1.5 rounded-lg bg-blue-600 px-3 py-1 text-xs font-bold text-white transition-colors hover:bg-blue-500 disabled:opacity-50"
+              className="flex items-center gap-1 sm:gap-1.5 rounded-lg bg-blue-600 px-2 py-1 sm:px-3 sm:py-1 text-[10px] sm:text-xs font-bold text-white transition-colors hover:bg-blue-500 disabled:opacity-50"
               id="btn-download-all-zip"
             >
-              <Archive className="h-3.5 w-3.5" />
-              <span>{isDownloadingZip ? 'Zipping...' : 'Download All (.ZIP)'}</span>
+              <Archive className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+              <span className="hidden sm:inline">{isDownloadingZip ? 'Zipping...' : 'Download All (.ZIP)'}</span>
+              <span className="inline sm:hidden">{isDownloadingZip ? '...' : 'ZIP'}</span>
             </button>
           )}
 
@@ -97,13 +99,13 @@ export const BatchQueue: React.FC<BatchQueueProps> = ({
             title="Clear all images"
             id="btn-clear-queue"
           >
-            <Trash2 className="h-4 w-4" />
+            <Trash2 className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
           </button>
         </div>
       </div>
 
       {/* List of items */}
-      <div className="space-y-2 max-h-72 overflow-y-auto pr-1">
+      <div className="space-y-1.5 sm:space-y-2 max-h-72 overflow-y-auto pr-1">
         {items.map((item) => {
           const isActive = item.id === activeId;
           const isDone = item.status === 'done' && item.result;
@@ -112,7 +114,7 @@ export const BatchQueue: React.FC<BatchQueueProps> = ({
             <div
               key={item.id}
               onClick={() => onSelectActive(item.id)}
-              className={`flex items-center justify-between rounded-xl border p-2.5 transition-all cursor-pointer ${
+              className={`flex items-center justify-between rounded-xl border p-2 sm:p-2.5 transition-all cursor-pointer ${
                 isActive
                   ? 'border-blue-500/60 bg-blue-500/10 shadow-sm'
                   : 'border-zinc-800/80 bg-zinc-950/60 hover:border-zinc-700 hover:bg-zinc-900/60'
@@ -120,8 +122,8 @@ export const BatchQueue: React.FC<BatchQueueProps> = ({
               id={`queue-item-${item.id}`}
             >
               {/* Left: Thumbnail & Name */}
-              <div className="flex items-center gap-3 min-w-0">
-                <div className="relative h-10 w-10 flex-shrink-0 overflow-hidden rounded-lg border border-zinc-800 bg-checkerboard">
+              <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                <div className="relative h-8 w-8 sm:h-10 sm:w-10 flex-shrink-0 overflow-hidden rounded-lg border border-zinc-800 bg-checkerboard">
                   <img
                     src={item.result ? item.result.url : item.originalUrl}
                     alt={item.name}
@@ -131,10 +133,10 @@ export const BatchQueue: React.FC<BatchQueueProps> = ({
                 </div>
 
                 <div className="min-w-0">
-                  <p className="text-xs font-semibold text-zinc-200 truncate">
+                  <p className="text-[10px] sm:text-xs font-semibold text-zinc-200 truncate">
                     {item.name}
                   </p>
-                  <div className="flex items-center gap-2 text-[11px] text-zinc-400">
+                  <div className="flex items-center gap-1.5 sm:gap-2 text-[9px] sm:text-[11px] text-zinc-400">
                     <span>{formatBytes(item.originalSize)}</span>
                     {isDone && (
                       <>
@@ -152,17 +154,17 @@ export const BatchQueue: React.FC<BatchQueueProps> = ({
               </div>
 
               {/* Right: Status & Actions */}
-              <div className="flex items-center gap-2 flex-shrink-0 ml-3">
+              <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0 ml-2 sm:ml-3">
                 {item.status === 'processing' && (
-                  <span className="flex items-center gap-1 text-xs text-blue-400">
-                    <Clock className="h-3.5 w-3.5 animate-spin" />
+                  <span className="flex items-center gap-1 text-[10px] sm:text-xs text-blue-400">
+                    <Clock className="h-3 w-3 sm:h-3.5 sm:w-3.5 animate-spin" />
                     <span className="hidden sm:inline">Processing</span>
                   </span>
                 )}
 
                 {item.status === 'error' && (
-                  <span className="flex items-center gap-1 text-xs text-red-400">
-                    <AlertCircle className="h-3.5 w-3.5" />
+                  <span className="flex items-center gap-1 text-[10px] sm:text-xs text-red-400">
+                    <AlertCircle className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
                     <span className="hidden sm:inline">Error</span>
                   </span>
                 )}
@@ -174,10 +176,10 @@ export const BatchQueue: React.FC<BatchQueueProps> = ({
                       e.stopPropagation();
                       onDownloadItem(item);
                     }}
-                    className="flex items-center gap-1 rounded-lg border border-zinc-700 bg-zinc-800/90 px-2 py-1 text-xs font-medium text-zinc-200 transition-colors hover:border-blue-500 hover:text-white"
+                    className="flex items-center gap-1 rounded-lg border border-zinc-700 bg-zinc-800/90 px-1.5 py-1 sm:px-2 sm:py-1 text-[10px] sm:text-xs font-medium text-zinc-200 transition-colors hover:border-blue-500 hover:text-white"
                     title="Download this file"
                   >
-                    <Download className="h-3.5 w-3.5" />
+                    <Download className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
                     <span className="hidden sm:inline">Save</span>
                   </button>
                 )}

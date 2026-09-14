@@ -103,7 +103,7 @@ export const DropZone: React.FC<DropZoneProps> = ({
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
         onClick={() => fileInputRef.current?.click()}
-        className={`group relative cursor-pointer overflow-hidden rounded-2xl border-2 border-dashed p-8 text-center transition-all duration-200 sm:p-12 ${
+        className={`group relative cursor-pointer overflow-hidden rounded-2xl border-2 border-dashed p-4 text-center transition-all duration-200 sm:p-12 ${
           isDragOver
             ? 'border-blue-500 bg-blue-500/10 shadow-lg shadow-blue-500/10'
             : 'border-zinc-700/80 bg-zinc-900/40 hover:border-zinc-500 hover:bg-zinc-900/70 hover:shadow-md'
@@ -115,57 +115,57 @@ export const DropZone: React.FC<DropZoneProps> = ({
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
         </div>
 
-        <div className="flex flex-col items-center justify-center space-y-4">
+        <div className="flex flex-col items-center justify-center space-y-2.5 sm:space-y-4">
           {/* Animated upload icon circle */}
           <div
-            className={`flex h-16 w-16 items-center justify-center rounded-2xl transition-transform duration-200 group-hover:scale-105 ${
+            className={`flex h-10 w-10 sm:h-16 sm:w-16 items-center justify-center rounded-xl sm:rounded-2xl transition-transform duration-200 group-hover:scale-105 ${
               isDragOver
                 ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30'
                 : 'bg-zinc-800/90 text-blue-400 group-hover:bg-blue-600 group-hover:text-white'
             }`}
           >
-            <UploadCloud className="h-8 w-8 transition-colors" />
+            <UploadCloud className="h-5 w-5 sm:h-8 sm:w-8 transition-colors" />
           </div>
 
-          <div className="space-y-1.5">
-            <h3 className="text-base font-semibold text-white sm:text-lg">
-              Drag and drop your images here, or{' '}
-              <span className="text-blue-400 underline decoration-blue-500/30 underline-offset-4 group-hover:decoration-blue-400">
-                browse files
+          <div className="space-y-1 sm:space-y-1.5">
+            <h3 className="text-xs font-semibold text-white sm:text-lg px-2">
+              Drag images here, or{' '}
+              <span className="text-blue-400 underline decoration-blue-500/30 underline-offset-2 sm:underline-offset-4 group-hover:decoration-blue-400">
+                browse
               </span>
             </h3>
-            <p className="text-xs text-zinc-400 sm:text-sm">
-              Supports JPEG, PNG, WebP, AVIF, BMP • Unlimited files • 100% processed locally
+            <p className="text-[9px] sm:text-sm text-zinc-400 px-4">
+              JPEG, PNG, WebP • Unlimited files • Processed locally
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-2 pt-1 text-[11px] text-zinc-400">
-            <span className="inline-flex items-center gap-1 rounded-md bg-zinc-800/80 px-2.5 py-1 text-zinc-300">
-              <FolderUp className="h-3 w-3 text-zinc-400" />
+          <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-1.5 sm:gap-2 pt-1 text-[9px] sm:text-[11px] text-zinc-400">
+            <span className="inline-flex items-center gap-1 rounded-md bg-zinc-800/80 px-2 sm:px-2.5 py-0.5 sm:py-1 text-zinc-300">
+              <FolderUp className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-zinc-400" />
               Batch uploads supported
             </span>
-            <span className="inline-flex items-center gap-1 rounded-md bg-zinc-800/80 px-2.5 py-1 text-zinc-300">
-              <Clipboard className="h-3 w-3 text-zinc-400" />
-              Paste from clipboard (<kbd className="font-mono text-[10px] text-zinc-400">Ctrl+V</kbd>)
+            <span className="inline-flex items-center gap-1 rounded-md bg-zinc-800/80 px-2 sm:px-2.5 py-0.5 sm:py-1 text-zinc-300">
+              <Clipboard className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-zinc-400" />
+              Paste from clipboard (<kbd className="font-mono text-[8px] sm:text-[10px] text-zinc-400">Ctrl+V</kbd>)
             </span>
           </div>
         </div>
 
         {pasteNotice && (
-          <div className="absolute top-4 right-4 rounded-lg bg-emerald-500/20 border border-emerald-500/40 px-3 py-1 text-xs font-medium text-emerald-300 animate-fade-in">
-            Image pasted from clipboard!
+          <div className="absolute top-2 right-2 sm:top-4 sm:right-4 rounded-lg bg-emerald-500/20 border border-emerald-500/40 px-2 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-xs font-medium text-emerald-300 animate-fade-in">
+            Image pasted!
           </div>
         )}
       </div>
 
       {/* Instant Sample Image Buttons */}
-      <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-2.5 rounded-xl border border-zinc-800/80 bg-zinc-900/30 p-3">
-        <div className="flex items-center gap-1.5 text-xs text-zinc-400">
-          <Sparkles className="h-3.5 w-3.5 text-amber-400" />
+      <div className="mt-3 sm:mt-4 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-2.5 rounded-xl border border-zinc-800/80 bg-zinc-900/30 p-2 sm:p-3">
+        <div className="flex items-center gap-1.5 text-[10px] sm:text-xs text-zinc-400">
+          <Sparkles className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-amber-400" />
           <span className="font-medium text-zinc-300">No image handy? Try a sample:</span>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
           {SAMPLE_IMAGES.map((sample) => (
             <button
               key={sample.id}
@@ -174,10 +174,10 @@ export const DropZone: React.FC<DropZoneProps> = ({
                 onSelectSample?.(sample);
               }}
               disabled={isLoadingSample}
-              className="flex items-center gap-1.5 rounded-lg border border-zinc-700/80 bg-zinc-800/70 px-2.5 py-1 text-xs font-medium text-zinc-200 transition-all hover:border-blue-500/50 hover:bg-zinc-700 hover:text-white disabled:opacity-50"
+              className="flex items-center gap-1 sm:gap-1.5 rounded-lg border border-zinc-700/80 bg-zinc-800/70 px-2 py-1 sm:px-2.5 sm:py-1 text-[10px] sm:text-xs font-medium text-zinc-200 transition-all hover:border-blue-500/50 hover:bg-zinc-700 hover:text-white disabled:opacity-50"
               id={`btn-sample-${sample.id}`}
             >
-              <ImageIcon className="h-3 w-3 text-blue-400" />
+              <ImageIcon className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-blue-400" />
               <span>{sample.name}</span>
             </button>
           ))}

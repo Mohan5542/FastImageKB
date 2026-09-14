@@ -13,9 +13,9 @@ const BaseModal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) =
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in">
-      <div className="relative w-full max-w-xl rounded-2xl border border-zinc-800 bg-zinc-900 p-6 shadow-2xl space-y-4 max-h-[85vh] overflow-y-auto">
-        <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
-          <h3 className="text-base font-bold text-white">{title}</h3>
+      <div className="relative w-full max-w-xl rounded-2xl border border-zinc-800 bg-zinc-900 p-4 sm:p-6 shadow-2xl space-y-3 sm:space-y-4 max-h-[85vh] overflow-y-auto">
+        <div className="flex items-center justify-between border-b border-zinc-800 pb-2 sm:pb-3">
+          <h3 className="text-sm sm:text-base font-bold text-white">{title}</h3>
           <button
             onClick={onClose}
             className="rounded-lg p-1 text-zinc-400 hover:bg-zinc-800 hover:text-white"

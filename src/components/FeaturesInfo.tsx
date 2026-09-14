@@ -61,31 +61,31 @@ export const FeaturesInfo: React.FC = () => {
   ];
 
   return (
-    <div className="space-y-12 pt-8">
+    <div className="space-y-8 sm:space-y-12 pt-4 sm:pt-8">
       {/* Universal Use-Cases Grid */}
       <div className="space-y-4">
         <div className="text-center space-y-1">
-          <h2 className="text-xl font-bold tracking-tight text-white sm:text-2xl">
+          <h2 className="text-lg font-bold tracking-tight text-white sm:text-2xl">
             Built for Every Workflow
           </h2>
-          <p className="text-xs text-zinc-400 sm:text-sm">
+          <p className="text-[10px] sm:text-sm text-zinc-400">
             A universal precision image tool crafted for creators, professionals, and students.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {useCases.map((uc) => {
             const Icon = uc.icon;
             return (
               <div
                 key={uc.title}
-                className="rounded-2xl border border-zinc-800/80 bg-zinc-900/40 p-4 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-900/70"
+                className="rounded-2xl border border-zinc-800/80 bg-zinc-900/40 p-3 sm:p-4 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-900/70"
               >
-                <div className={`mb-3 inline-flex h-9 w-9 items-center justify-center rounded-xl border ${uc.color}`}>
-                  <Icon className="h-4 w-4" />
+                <div className={`mb-2 sm:mb-3 inline-flex h-7 w-7 sm:h-9 sm:w-9 items-center justify-center rounded-xl border ${uc.color}`}>
+                  <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 </div>
-                <h3 className="text-sm font-semibold text-zinc-200">{uc.title}</h3>
-                <p className="mt-1.5 text-xs text-zinc-400 leading-relaxed">{uc.description}</p>
+                <h3 className="text-xs sm:text-sm font-semibold text-zinc-200">{uc.title}</h3>
+                <p className="mt-1 sm:mt-1.5 text-[10px] sm:text-xs text-zinc-400 leading-relaxed">{uc.description}</p>
               </div>
             );
           })}
@@ -93,29 +93,29 @@ export const FeaturesInfo: React.FC = () => {
       </div>
 
       {/* Tech Architecture Highlights */}
-      <div className="rounded-2xl border border-zinc-800/80 bg-zinc-900/30 p-6 sm:p-8">
-        <div className="mx-auto max-w-3xl text-center space-y-2 mb-8">
-          <span className="text-xs font-semibold text-blue-400 tracking-wider uppercase">
+      <div className="rounded-2xl border border-zinc-800/80 bg-zinc-900/30 p-5 sm:p-8">
+        <div className="mx-auto max-w-3xl text-center space-y-2 mb-6 sm:mb-8">
+          <span className="text-[10px] sm:text-xs font-semibold text-blue-400 tracking-wider uppercase">
             Pure Browser Architecture
           </span>
-          <h3 className="text-lg font-bold text-white sm:text-xl">
+          <h3 className="text-base font-bold text-white sm:text-xl">
             How FastImageKB Works Without Servers
           </h3>
-          <p className="text-xs text-zinc-400 leading-relaxed">
+          <p className="text-[10px] sm:text-xs text-zinc-400 leading-relaxed px-2 sm:px-0">
             By leveraging modern HTML5 OffscreenCanvas and WebAssembly graphics capabilities, your device processes raw image pixels locally with zero latency, zero cloud storage, and absolute privacy.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3">
           {highlights.map((hl) => {
             const Icon = hl.icon;
             return (
-              <div key={hl.title} className="space-y-2">
-                <div className="flex items-center gap-2 text-zinc-200 font-semibold text-sm">
-                  <Icon className="h-4 w-4 text-blue-400" />
+              <div key={hl.title} className="space-y-1 sm:space-y-2">
+                <div className="flex items-center gap-1.5 sm:gap-2 text-zinc-200 font-semibold text-[11px] sm:text-sm">
+                  <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-blue-400" />
                   <span>{hl.title}</span>
                 </div>
-                <p className="text-xs text-zinc-400 leading-relaxed">{hl.desc}</p>
+                <p className="text-[10px] sm:text-xs text-zinc-400 leading-relaxed">{hl.desc}</p>
               </div>
             );
           })}

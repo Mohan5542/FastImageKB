@@ -123,13 +123,6 @@ export async function compressImage(
   let curWidth = settings.width > 0 ? settings.width : img.naturalWidth;
   let curHeight = settings.height > 0 ? settings.height : img.naturalHeight;
 
-  // Apply scale percentage if configured
-  if (settings.scalePercent && settings.scalePercent < 100) {
-    const factor = settings.scalePercent / 100;
-    curWidth = Math.round(curWidth * factor);
-    curHeight = Math.round(curHeight * factor);
-  }
-
   let finalBlob: Blob | null = null;
   let finalQuality = 0.92;
   let iterations = 0;
@@ -154,7 +147,8 @@ export async function compressImage(
   } 
   // MODE B: Target KB Mode (Intelligent Binary Search Algorithm)
   else {
-    const targetBytes = Math.max(1, settings.targetKB) * 1024;
+    const unitMultiplier = settings.targetUnit === 'MB' ? 1024 * 1024 : 1024;
+    const targetBytes = Math.max(1, settings.targetKB) * unitMultiplier;
     
     // For PNG (lossless format without native browser quality parameter)
     if (effectiveMimeType === 'image/png') {
@@ -163,13 +157,15 @@ export async function compressImage(
 
       // If PNG exceeds target KB and autoDownscale is allowed, iteratively downscale dimensions
       if (testBlob.size > targetBytes && settings.autoDownscaleIfTargetExceeded) {
-        let downscaleFactor = 0.9;
+        // More aggressive downscale for PNG because size scales with area (squared) and PNG is lossless
+        let scale = Math.min(0.9, Math.sqrt(targetBytes / testBlob.size) * 0.95);
         for (let i = 0; i < 7 && testBlob.size > targetBytes; i++) {
           iterations++;
-          curWidth = Math.max(16, Math.round(curWidth * downscaleFactor));
-          curHeight = Math.max(16, Math.round(curHeight * downscaleFactor));
+          curWidth = Math.max(16, Math.round(curWidth * scale));
+          curHeight = Math.max(16, Math.round(curHeight * scale));
           canvas = renderImageToCanvas(img, curWidth, curHeight, false);
           testBlob = await canvasToBlob(canvas, effectiveMimeType);
+          scale *= 0.8; // Get more aggressive if still failing
           onProgress?.(45 + Math.round((i / 7) * 45));
         }
       }
