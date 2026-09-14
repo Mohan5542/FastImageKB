@@ -43,3 +43,98 @@
   background: rgba(161, 161, 170, 0.4);
 }
 
+/* Global Mobile Compact Scaling System (<= 768px) */
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 13.5px !important;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  button, 
+  .btn,
+  input[type="button"],
+  input[type="submit"] {
+    letter-spacing: -0.01em;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="date"],
+  select {
+    padding-top: 0.55rem !important;
+    padding-bottom: 0.55rem !important;
+    font-size: 0.925rem !important;
+  }
+
+  .py-16 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  .py-24 {
+    padding-top: 2.75rem !important;
+    padding-bottom: 2.75rem !important;
+  }
+  .py-12 {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+  .py-8 {
+    padding-top: 1.15rem !important;
+    padding-bottom: 1.15rem !important;
+  }
+  .px-4 {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+  .p-8 {
+    padding: 1.25rem !important;
+  }
+  .p-6 {
+    padding: 1rem !important;
+  }
+  .p-5 {
+    padding: 0.85rem !important;
+  }
+  .gap-6 {
+    gap: 1rem !important;
+  }
+  .gap-8 {
+    gap: 1.25rem !important;
+  }
+  .space-y-6 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-y-reverse: 0;
+    margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse))) !important;
+    margin-bottom: calc(1rem * var(--tw-space-y-reverse)) !important;
+  }
+  .space-y-8 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-y-reverse: 0;
+    margin-top: calc(1.25rem * calc(1 - var(--tw-space-y-reverse))) !important;
+    margin-bottom: calc(1.25rem * var(--tw-space-y-reverse)) !important;
+  }
+  .rounded-2xl {
+    border-radius: 0.875rem !important;
+  }
+  header .h-16 {
+    height: 3.5rem !important;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  html {
+    font-size: 12.5px !important;
+  }
+  .px-4 {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+  .p-8, .p-6 {
+    padding: 0.85rem !important;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  html {
+    font-size: 16px;
+  }
+}
+

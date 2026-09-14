@@ -1,6 +1,6 @@
 {
-  "name": "FastImageKB",
-  "description": "Free image resizer and compressor with intelligent KB target optimization.",
+  "name": "Brandique Tools",
+  "description": "Free, secure online developer and utility tools directory with photo resizer and exact age calculator.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

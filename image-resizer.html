@@ -1,0 +1,2421 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Resizer to 20kb, 50kb, 100kb for Govt Exams & Passport - Brandique Tools</title>
+    <meta name="description" content="Free photo and signature resizer to exact 20KB, 50KB, and 100KB for UPSC, SSC, IBPS, State PSC, and passport visa portals. 100% private in-browser compression." />
+    <meta name="keywords" content="image resizer 20kb, photo resizer 50kb, signature resizer 20kb, govt exam photo resize, ssc photo resize, upsc signature resize, compress image to 50kb" />
+    
+    <!-- Open Graph / SEO -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Photo & Signature Resizer to 20KB/50KB - Brandique Tools" />
+    <meta property="og:description" content="Fast, 100% private image compressor. Resize photos & signatures for exam forms with zero server upload." />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Canvas Confetti for Celebration on Download -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+              mono: ['"JetBrains Mono"', 'monospace'],
+            },
+            colors: {
+              brand: {
+                50: '#fefce8',
+                100: '#fef9c3',
+                200: '#fef08a',
+                300: '#fde047',
+                400: '#facc15',
+                500: '#eab308',
+                600: '#ca8a04',
+                700: '#a16207',
+                800: '#854d0e',
+                900: '#713f12',
+                950: '#422006',
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .bg-checkerboard {
+        background-color: #18181b;
+        background-image: 
+          linear-gradient(45deg, #27272a 25%, transparent 25%), 
+          linear-gradient(-45deg, #27272a 25%, transparent 25%), 
+          linear-gradient(45deg, transparent 75%, #27272a 75%), 
+          linear-gradient(-45deg, transparent 75%, #27272a 75%);
+        background-size: 16px 16px;
+        background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+      }
+      .cursor-zoom-in {
+        cursor: zoom-in;
+      }
+      /* Split slider range styling */
+      input[type=range].split-slider-range::-webkit-slider-thumb {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #facc15;
+        cursor: ew-resize;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        border: 2px solid #000000;
+      }
+    </style>
+    <link rel="stylesheet" href="/mobile-scale.css" />
+  </head>
+  <body class="h-full bg-zinc-950 text-zinc-100 font-sans antialiased selection:bg-yellow-400 selection:text-black flex flex-col">
+    <!-- Top Announcement Banner -->
+    <div class="bg-zinc-900 border-b border-zinc-800 px-3 py-1.5 text-center text-xs font-medium text-zinc-400">
+      <span class="inline-flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
+        <span class="hidden sm:inline">No sign-up required</span>
+        <span class="hidden sm:inline text-zinc-600">•</span>
+        <span class="text-yellow-400 font-semibold flex items-center gap-1">
+          <span class="h-1.5 w-1.5 rounded-full bg-yellow-400 inline-block animate-pulse"></span>
+          100% In-Browser Privacy
+        </span>
+        <span class="text-zinc-600">•</span>
+        <span class="text-zinc-300">Free forever</span>
+      </span>
+    </div>
+
+    <!-- Global Navigation Bar -->
+    <header class="sticky top-0 z-40 backdrop-blur-md bg-zinc-900/90 border-b border-zinc-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between">
+        <!-- Logo & Back to Home -->
+        <a href="index.html" class="flex items-center gap-2.5 group" id="nav-brand-logo">
+          <div class="h-8 w-8 sm:h-9 sm:w-9 rounded-lg bg-yellow-400 text-black font-extrabold flex items-center justify-center shadow-md shadow-yellow-400/20 group-hover:bg-yellow-300 transition-colors">
+            <svg class="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="3.5" />
+              <path d="M3 9h18" />
+              <path d="M9 21V9" />
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <span class="text-base sm:text-lg font-extrabold tracking-tight text-white group-hover:text-yellow-400 transition-colors">Brandique Tools</span>
+            </div>
+            <p class="text-xs text-zinc-400 hidden sm:block">Photo & Signature Resizer</p>
+          </div>
+        </a>
+
+        <!-- Navigation Links -->
+        <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-zinc-300">
+          <a href="index.html" class="hover:text-yellow-400 transition-colors flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            All Tools
+          </a>
+          <span class="text-yellow-400 font-bold flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Image Resizer
+          </span>
+          <a href="age-calculator.html" class="hover:text-yellow-400 transition-colors flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Age Calculator
+          </a>
+        </nav>
+
+        <!-- Right Side Privacy & Modals -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <button
+            onclick="openPrivacyModal()"
+            class="flex items-center gap-1.5 rounded-lg border border-zinc-700 bg-zinc-900 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-xs font-semibold text-yellow-400 hover:bg-zinc-800 transition-colors"
+            title="How browser privacy works"
+            id="nav-privacy-btn"
+          >
+            <svg class="w-3.5 h-3.5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            <span class="hidden sm:inline">Browser Privacy</span>
+            <span class="sm:hidden">Privacy</span>
+          </button>
+
+          <button
+            onclick="openFaqModal()"
+            class="flex items-center gap-1.5 rounded-lg border border-zinc-700 bg-zinc-900 px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-xs font-semibold text-zinc-200 hover:bg-zinc-800 transition-colors"
+            title="How it Works & FAQs"
+            id="nav-faq-btn"
+          >
+            <svg class="w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="hidden sm:inline">How It Works</span>
+            <span class="sm:hidden">FAQ</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main App Container -->
+    <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-5 sm:py-8 space-y-5 sm:space-y-8">
+      
+      <!-- Page Header & Tagline -->
+      <div class="text-center max-w-3xl mx-auto space-y-2 sm:space-y-3">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-yellow-400/10 border border-yellow-400/30 text-xs font-bold text-yellow-400">
+          Govt Exam & Portal Optimization
+        </div>
+        <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+          Image KB Resizer & Compressor
+        </h1>
+        <p class="text-sm sm:text-base text-zinc-400 max-w-xl mx-auto leading-relaxed">
+          Compress photos and signatures down to exact <span class="text-yellow-400 font-semibold">20KB, 50KB, 100KB</span> or custom sizes in milliseconds. Fast, private, and runs 100% in your browser.
+        </p>
+
+        <!-- Exam Quick Presets -->
+        <div class="flex flex-wrap items-center justify-center gap-2 pt-1 sm:pt-2">
+          <span class="text-xs text-zinc-400 font-medium">Quick Exam Presets:</span>
+          <button onclick="applyPreset(20, 'Signature (10-20 KB)')" class="px-3 py-1.5 text-xs rounded-lg bg-zinc-900 hover:bg-yellow-400 hover:text-black border border-zinc-700 text-yellow-400 transition-all font-bold shadow-sm">
+            ✍️ SSC/UPSC Signature (20KB)
+          </button>
+          <button onclick="applyPreset(50, 'Exam Photo (20-50 KB)')" class="px-3 py-1.5 text-xs rounded-lg bg-zinc-900 hover:bg-yellow-400 hover:text-black border border-zinc-700 text-yellow-400 transition-all font-bold shadow-sm">
+            👤 Govt Photo (50KB)
+          </button>
+          <button onclick="applyPreset(100, 'Passport / ID (100 KB)')" class="px-3 py-1.5 text-xs rounded-lg bg-zinc-900 hover:bg-yellow-400 hover:text-black border border-zinc-700 text-yellow-400 transition-all font-bold shadow-sm">
+            📄 Document / ID (100KB)
+          </button>
+        </div>
+      </div>
+
+      <!-- Upload Drop Zone (Visible when no image or when adding new) -->
+      <div id="drop-zone-container" class="max-w-4xl mx-auto">
+        <div
+          id="drop-zone"
+          class="relative border-2 border-dashed border-zinc-700 hover:border-yellow-400 bg-zinc-900 hover:bg-zinc-800/80 rounded-xl sm:rounded-2xl p-4 sm:p-10 text-center cursor-pointer transition-all duration-200 group shadow-xl"
+        >
+          <input type="file" id="file-input" accept="image/*" class="hidden" />
+          
+          <div class="space-y-2.5 sm:space-y-4 max-w-md mx-auto pointer-events-none">
+            <div class="h-10 w-10 sm:h-16 sm:w-16 mx-auto rounded-xl sm:rounded-2xl bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 flex items-center justify-center group-hover:scale-105 transition-transform">
+              <svg class="h-5 w-5 sm:h-8 sm:w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+            </div>
+            <div>
+              <h3 class="text-sm sm:text-lg font-bold text-white leading-tight">
+                Drop photo or signature here
+              </h3>
+              <p class="text-xs sm:text-sm text-zinc-400 mt-0.5">
+                Supports JPG, PNG, WebP • Tap to select file
+              </p>
+            </div>
+            <div class="pt-0.5">
+              <button
+                type="button"
+                class="pointer-events-auto inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg bg-yellow-400 hover:bg-yellow-300 text-black font-extrabold text-xs sm:text-sm shadow-md shadow-yellow-400/20 transition-all active:scale-95"
+                onclick="document.getElementById('file-input').click()"
+              >
+                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                <span>Browse File</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Sample Images Bar -->
+          <div class="mt-4 pt-3 sm:mt-8 sm:pt-6 border-t border-zinc-800 flex flex-wrap items-center justify-center gap-2 text-xs text-zinc-400">
+            <span>Or try instant sample:</span>
+            <button
+              type="button"
+              onclick="loadSample('photo')"
+              class="px-2.5 py-1 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-yellow-400 border border-zinc-700 transition-colors font-bold"
+            >
+              👤 Sample Photo
+            </button>
+            <button
+              type="button"
+              onclick="loadSample('signature')"
+              class="px-2.5 py-1 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-yellow-400 border border-zinc-700 transition-colors font-bold"
+            >
+              ✍️ Sample Signature
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Workspace (Hidden until an image is loaded) -->
+      <div id="workspace-container" class="hidden space-y-6">
+        
+        <!-- Mobile Layout: Preview on top, settings below as requested -->
+        <div class="flex flex-col lg:grid lg:grid-cols-12 gap-6 items-start">
+
+          <!-- Right / Top Column: Live Preview & Inspection (7 cols on lg, Order-1 on mobile) -->
+          <div class="order-1 lg:order-2 lg:col-span-7 space-y-4 w-full" id="preview-section">
+            
+            <!-- Mobile scroll hint -->
+            <div class="lg:hidden flex items-center justify-center py-2 px-3 bg-zinc-900 rounded-xl border border-yellow-400/30 shadow-md">
+              <p class="text-[11px] font-bold text-yellow-400">
+                <span class="animate-pulse">↓ For compression settings & presets scroll down ↓</span>
+              </p>
+            </div>
+
+            <!-- Preview Card -->
+            <div class="rounded-2xl border border-zinc-800 bg-zinc-900 p-4 sm:p-6 shadow-xl space-y-4">
+              <!-- Preview Header -->
+              <div class="flex flex-wrap items-center justify-between border-b border-zinc-800 pb-3 gap-2">
+                <div class="flex items-center gap-2 truncate">
+                  <span class="h-2.5 w-2.5 rounded-full bg-yellow-400 animate-pulse"></span>
+                  <h3 class="text-sm sm:text-base font-bold text-white truncate" id="preview-image-name">
+                    photo.jpg
+                  </h3>
+                </div>
+                
+                <!-- View Mode & Zoom Actions -->
+                <div class="flex items-center gap-1.5 sm:gap-2">
+                  <!-- Side-by-Side vs Split Slider -->
+                  <div class="flex items-center rounded-lg bg-zinc-950 p-0.5 border border-zinc-800 text-xs">
+                    <button
+                      type="button"
+                      id="view-tab-side"
+                      onclick="switchPreviewMode('side')"
+                      class="px-2 sm:px-2.5 py-1 font-bold rounded-md bg-yellow-400 text-black transition-colors"
+                      title="Side-by-Side View"
+                    >
+                      Side-by-Side
+                    </button>
+                    <button
+                      type="button"
+                      id="view-tab-split"
+                      onclick="switchPreviewMode('split')"
+                      class="px-2 sm:px-2.5 py-1 font-medium text-zinc-400 hover:text-white rounded-md transition-colors"
+                      title="Interactive Split Slider View"
+                    >
+                      Split Slider
+                    </button>
+                  </div>
+
+                  <!-- Zoom Button -->
+                  <button
+                    type="button"
+                    onclick="openZoomModal()"
+                    class="flex items-center gap-1 px-2.5 py-1 text-xs font-bold rounded-lg bg-zinc-800 hover:bg-zinc-700 text-yellow-400 border border-zinc-700 transition-colors"
+                    title="Zoom & Magnify Details"
+                  >
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                    <span>Zoom</span>
+                  </button>
+
+                  <!-- Change Image Button -->
+                  <button
+                    type="button"
+                    onclick="resetApp()"
+                    class="px-2.5 py-1 text-xs rounded-lg border border-zinc-700 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 hover:text-white transition-colors"
+                    title="Upload another file"
+                  >
+                    Change
+                  </button>
+                </div>
+              </div>
+
+              <!-- Processing Progress Bar -->
+              <div id="processing-bar" class="hidden space-y-1">
+                <div class="flex justify-between text-xs text-yellow-400 font-mono">
+                  <span>Compressing with intelligent engine...</span>
+                  <span id="progress-percent">0%</span>
+                </div>
+                <div class="h-1.5 w-full bg-zinc-950 rounded-full overflow-hidden">
+                  <div id="progress-fill" class="h-full bg-yellow-400 transition-all duration-150" style="width: 0%"></div>
+                </div>
+              </div>
+
+              <!-- In-Place Preview Zoom Toolbar -->
+              <div class="flex flex-wrap items-center justify-between px-3 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-xs gap-2">
+                <div class="flex items-center gap-1.5">
+                  <span class="text-[11px] font-semibold text-zinc-400 flex items-center gap-1">
+                    <svg class="w-3.5 h-3.5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                    <span>Zoom:</span>
+                  </span>
+                  <button
+                    type="button"
+                    onclick="adjustInPlaceZoom(-25)"
+                    class="p-1 rounded-lg bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 text-zinc-200 transition-colors"
+                    title="Zoom Out (-25%)"
+                  >
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+                  </button>
+                  <button
+                    type="button"
+                    onclick="resetInPlaceZoom()"
+                    id="inplace-zoom-badge"
+                    class="font-mono text-yellow-400 font-bold px-2 py-0.5 text-xs rounded bg-zinc-800 border border-zinc-700 hover:border-yellow-400 min-w-[50px] text-center"
+                    title="Click to reset to 100%"
+                  >
+                    100%
+                  </button>
+                  <button
+                    type="button"
+                    onclick="adjustInPlaceZoom(25)"
+                    class="p-1 rounded-lg bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 text-zinc-200 transition-colors"
+                    title="Zoom In (+25%)"
+                  >
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                  </button>
+                  <button
+                    type="button"
+                    onclick="resetInPlaceZoom()"
+                    class="px-2 py-1 rounded-lg bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 text-[11px] text-zinc-300 transition-colors"
+                  >
+                    Fit
+                  </button>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] text-zinc-500 hidden sm:inline">Scroll or click image to inspect</span>
+                  <button
+                    type="button"
+                    onclick="openZoomModal()"
+                    class="flex items-center gap-1 px-2.5 py-1 text-[11px] font-bold rounded-lg bg-zinc-800 hover:bg-zinc-700 text-yellow-400 border border-zinc-700 transition-colors"
+                    title="Open Fullscreen Synchronized Zoom Modal"
+                  >
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+                    <span>Fullscreen Zoom</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- VIEW 1: Side-by-Side Container -->
+              <div id="preview-mode-side" class="grid grid-cols-2 gap-2 sm:gap-4">
+                
+                <!-- ORIGINAL IMAGE -->
+                <div class="space-y-2 rounded-xl border border-zinc-800 bg-zinc-950 p-2 sm:p-3.5 min-w-0">
+                  <div class="flex items-center justify-between text-[10px] sm:text-xs">
+                    <span class="font-semibold text-zinc-300 truncate">Original</span>
+                    <span class="font-mono text-zinc-400 pl-1" id="orig-size-badge">0 KB</span>
+                  </div>
+                  <div
+                    id="orig-zoom-container"
+                    class="group relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-lg bg-checkerboard border border-zinc-800 cursor-zoom-in select-none"
+                    title="Click or use buttons to Zoom"
+                  >
+                    <img
+                      id="orig-img"
+                      src=""
+                      alt="Original"
+                      class="max-h-full max-w-full object-contain transition-transform duration-100 ease-out origin-center pointer-events-none"
+                    />
+                    <!-- Floating In-card Zoom Controls -->
+                    <div class="absolute bottom-1.5 right-1.5 flex items-center gap-1 opacity-80 group-hover:opacity-100 transition-opacity z-10">
+                      <button
+                        type="button"
+                        onclick="event.stopPropagation(); adjustInPlaceZoom(-25)"
+                        class="h-6 w-6 rounded bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-700 flex items-center justify-center text-white text-xs shadow-md"
+                        title="Zoom Out"
+                      >
+                        -
+                      </button>
+                      <button
+                        type="button"
+                        onclick="event.stopPropagation(); adjustInPlaceZoom(25)"
+                        class="h-6 w-6 rounded bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-700 flex items-center justify-center text-white text-xs shadow-md"
+                        title="Zoom In"
+                      >
+                        +
+                      </button>
+                    </div>
+                    <div
+                      onclick="openZoomModal()"
+                      class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-xs font-semibold text-white pointer-events-none gap-1"
+                    >
+                      <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                      <span>Click to Inspect</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center justify-between text-[8px] sm:text-[11px] text-zinc-400 pt-1">
+                    <span class="truncate" id="orig-dimensions">0 × 0 px</span>
+                    <span class="uppercase ml-1" id="orig-format">JPG</span>
+                  </div>
+                </div>
+
+                <!-- OPTIMIZED IMAGE -->
+                <div class="space-y-2 rounded-xl border border-yellow-400/30 bg-yellow-400/5 p-2 sm:p-3.5 shadow-sm min-w-0">
+                  <div class="flex items-center justify-between text-[10px] sm:text-xs">
+                    <span class="font-bold text-yellow-400 flex items-center gap-1 min-w-0">
+                      <svg class="h-3 w-3 sm:h-3.5 sm:w-3.5 text-yellow-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                      <span class="truncate">Optimized</span>
+                    </span>
+                    <span class="font-mono font-bold text-yellow-400 pl-1" id="opt-size-badge">
+                      0 KB
+                    </span>
+                  </div>
+                  <div
+                    id="opt-zoom-container"
+                    class="group relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-lg bg-checkerboard border border-zinc-800 cursor-zoom-in select-none"
+                    title="Click or use buttons to Zoom"
+                  >
+                    <img
+                      id="opt-img"
+                      src=""
+                      alt="Optimized"
+                      class="max-h-full max-w-full object-contain transition-transform duration-100 ease-out origin-center pointer-events-none"
+                    />
+                    <!-- Floating In-card Zoom Controls -->
+                    <div class="absolute bottom-1.5 right-1.5 flex items-center gap-1 opacity-80 group-hover:opacity-100 transition-opacity z-10">
+                      <button
+                        type="button"
+                        onclick="event.stopPropagation(); adjustInPlaceZoom(-25)"
+                        class="h-6 w-6 rounded bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-700 flex items-center justify-center text-white text-xs shadow-md"
+                        title="Zoom Out"
+                      >
+                        -
+                      </button>
+                      <button
+                        type="button"
+                        onclick="event.stopPropagation(); adjustInPlaceZoom(25)"
+                        class="h-6 w-6 rounded bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-700 flex items-center justify-center text-white text-xs shadow-md"
+                        title="Zoom In"
+                      >
+                        +
+                      </button>
+                    </div>
+                    <div
+                      onclick="openZoomModal()"
+                      class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-xs font-semibold text-white pointer-events-none gap-1"
+                    >
+                      <svg class="w-4 h-4 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                      <span>Click to Inspect</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center justify-between text-[8px] sm:text-[11px] text-zinc-400 pt-1">
+                    <span class="truncate" id="opt-dimensions">0 × 0 px</span>
+                    <span class="uppercase ml-1 text-yellow-400 font-bold" id="opt-reduction">-0%</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- VIEW 2: Interactive Split-Slider Container (Hidden initially) -->
+              <div id="preview-mode-split" class="hidden space-y-2">
+                <div class="relative w-full aspect-video rounded-xl bg-checkerboard border border-zinc-800 overflow-hidden select-none" id="split-container">
+                  <!-- Bottom: Original Image -->
+                  <img id="split-orig-img" src="" alt="Original" class="absolute inset-0 w-full h-full object-contain pointer-events-none" />
+                  
+                  <!-- Top: Optimized Image clipped -->
+                  <div id="split-opt-wrapper" class="absolute inset-0 overflow-hidden pointer-events-none" style="width: 50%;">
+                    <img id="split-opt-img" src="" alt="Optimized" class="absolute inset-0 w-full h-full object-contain max-w-none" />
+                  </div>
+
+                  <!-- Split Divider Line -->
+                  <div id="split-divider-line" class="absolute top-0 bottom-0 w-0.5 bg-yellow-400 pointer-events-none shadow-lg" style="left: 50%;">
+                    <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-yellow-400 border-2 border-black flex items-center justify-center shadow-lg text-black font-bold">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 9l-4 3 4 3m8-6l4 3-4 3"/></svg>
+                    </div>
+                  </div>
+
+                  <!-- Split Range Slider Control -->
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="50"
+                    id="split-slider-input"
+                    class="split-slider-range absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20"
+                    oninput="updateSplitSlider(this.value)"
+                  />
+
+                  <!-- Badges in corners -->
+                  <div class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/80 backdrop-blur-sm text-[10px] font-mono text-white pointer-events-none z-10 border border-zinc-700">
+                    Original
+                  </div>
+                  <div class="absolute top-2 right-2 px-2 py-0.5 rounded bg-yellow-400 backdrop-blur-sm text-[10px] font-mono text-black font-bold pointer-events-none z-10">
+                    Optimized
+                  </div>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-zinc-400 px-1">
+                  <span>← Drag divider to compare before & after</span>
+                  <button type="button" onclick="openZoomModal()" class="text-yellow-400 hover:underline font-bold">
+                    Inspect in Fullscreen Zoom →
+                  </button>
+                </div>
+              </div>
+
+              <!-- Reduction Stats Pill -->
+              <div class="flex flex-wrap items-center justify-between p-3 rounded-xl bg-zinc-950 border border-zinc-800 text-xs gap-2">
+                <div class="flex items-center gap-2">
+                  <span class="h-2 w-2 rounded-full bg-yellow-400"></span>
+                  <span class="text-zinc-400">Target: <strong class="text-white" id="stat-target-display">50 KB</strong></span>
+                </div>
+                <div class="flex items-center gap-3 text-zinc-400 text-[11px]">
+                  <span>Time: <strong class="text-zinc-200" id="stat-time-display">0ms</strong></span>
+                  <span>Quality: <strong class="text-zinc-200" id="stat-quality-display">85%</strong></span>
+                  <span>Bandwidth Saved: <strong class="text-yellow-400 font-bold" id="stat-bandwidth-saved">0 KB</strong></span>
+                </div>
+              </div>
+
+              <!-- Primary Download & Action Bar -->
+              <div class="pt-2 flex flex-col sm:flex-row gap-2.5">
+                <button
+                  id="btn-download"
+                  onclick="downloadResult()"
+                  class="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-yellow-400 hover:bg-yellow-300 text-black font-extrabold text-sm shadow-md shadow-yellow-400/20 transition-all active:scale-95"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                  <span>Download Optimized Image</span>
+                  <span class="text-xs px-2 py-0.5 rounded bg-black text-yellow-400 font-mono font-bold" id="btn-download-size">0 KB</span>
+                </button>
+                <button
+                  id="btn-copy"
+                  onclick="copyToClipboard()"
+                  class="px-4 py-3 rounded-xl bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-zinc-200 font-bold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm"
+                  title="Copy image to clipboard"
+                >
+                  <svg class="w-4 h-4 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+                  <span>Copy</span>
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Left / Bottom Column: Comprehensive Compression Settings (5 cols on lg, Order-2 on mobile) -->
+          <div class="order-2 lg:order-1 lg:col-span-5 space-y-4 w-full">
+            <div class="rounded-2xl border border-zinc-800 bg-zinc-900 p-4 sm:p-5 shadow-xl space-y-4">
+              
+              <!-- Panel Header & Optimization Mode Tabs -->
+              <div class="space-y-2 border-b border-zinc-800 pb-3">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <svg class="h-4 w-4 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+                    <h2 class="text-xs sm:text-sm font-bold tracking-wide text-white uppercase">
+                      Compression Settings
+                    </h2>
+                  </div>
+                  <span class="text-[10px] font-mono text-yellow-400 bg-yellow-400/10 border border-yellow-400/30 px-2 py-0.5 rounded-full font-bold">
+                    Live Engine
+                  </span>
+                </div>
+
+                <!-- Mode Switch Tabs: Target KB vs Manual Quality -->
+                <div class="grid grid-cols-2 gap-1 rounded-xl bg-zinc-950 p-1 border border-zinc-800 text-xs">
+                  <button
+                    type="button"
+                    id="tab-mode-target"
+                    onclick="setOptimizationMode('target-kb')"
+                    class="py-1.5 px-2 rounded-lg font-bold bg-yellow-400 text-black transition-all text-center flex items-center justify-center gap-1.5"
+                  >
+                    <span>🎯 Target Size (KB)</span>
+                  </button>
+                  <button
+                    type="button"
+                    id="tab-mode-quality"
+                    onclick="setOptimizationMode('manual-quality')"
+                    class="py-1.5 px-2 rounded-lg font-medium text-zinc-400 hover:text-white transition-all text-center flex items-center justify-center gap-1.5"
+                  >
+                    <span>🎛️ Manual Quality (%)</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- SECTION 1A: Target KB Panel (Shown when mode == 'target-kb') -->
+              <div id="panel-target-kb" class="space-y-3">
+                <div class="flex items-center justify-between">
+                  <label class="text-xs font-semibold text-zinc-200">
+                    Target File Size
+                  </label>
+                  <span class="text-[11px] text-yellow-400 font-mono font-bold">Precision Target</span>
+                </div>
+
+                <!-- Target Input Field with Unit Selector -->
+                <div class="flex items-center gap-2">
+                  <div class="relative flex-1">
+                    <input
+                      type="number"
+                      id="target-kb-input"
+                      value="50"
+                      min="1"
+                      max="50000"
+                      class="w-full bg-zinc-950 border border-zinc-700 rounded-xl px-3 py-2 text-sm font-mono text-white focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                      oninput="onSettingsChanged()"
+                    />
+                  </div>
+                  <!-- Unit dropdown (KB / MB) -->
+                  <select
+                    id="target-unit-select"
+                    onchange="onUnitChanged()"
+                    class="bg-zinc-950 border border-zinc-700 rounded-xl px-3 py-2 text-xs font-bold text-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                  >
+                    <option value="KB" selected>KB</option>
+                    <option value="MB">MB</option>
+                  </select>
+                </div>
+
+                <!-- Quick Preset Chips -->
+                <div class="space-y-1.5">
+                  <span class="text-[10px] text-zinc-400 font-medium">Quick Presets:</span>
+                  <div class="grid grid-cols-3 sm:grid-cols-6 gap-1">
+                    <button type="button" onclick="setTargetSize(20, 'KB')" class="preset-chip py-1.5 text-xs rounded-lg bg-zinc-950 border border-zinc-800 hover:border-yellow-400 hover:text-yellow-400 text-zinc-300 font-mono text-center transition-colors">20 KB</button>
+                    <button type="button" onclick="setTargetSize(50, 'KB')" class="preset-chip py-1.5 text-xs rounded-lg bg-zinc-950 border border-zinc-800 hover:border-yellow-400 hover:text-yellow-400 text-zinc-300 font-mono text-center transition-colors">50 KB</button>
+                    <button type="button" onclick="setTargetSize(100, 'KB')" class="preset-chip py-1.5 text-xs rounded-lg bg-zinc-950 border border-zinc-800 hover:border-yellow-400 hover:text-yellow-400 text-zinc-300 font-mono text-center transition-colors">100 KB</button>
+                    <button type="button" onclick="setTargetSize(200, 'KB')" class="preset-chip py-1.5 text-xs rounded-lg bg-zinc-950 border border-zinc-800 hover:border-yellow-400 hover:text-yellow-400 text-zinc-300 font-mono text-center transition-colors">200 KB</button>
+                    <button type="button" onclick="setTargetSize(500, 'KB')" class="preset-chip py-1.5 text-xs rounded-lg bg-zinc-950 border border-zinc-800 hover:border-yellow-400 hover:text-yellow-400 text-zinc-300 font-mono text-center transition-colors">500 KB</button>
+                    <button type="button" onclick="setTargetSize(1, 'MB')" class="preset-chip py-1.5 text-xs rounded-lg bg-zinc-950 border border-zinc-800 hover:border-yellow-400 hover:text-yellow-400 text-zinc-300 font-mono text-center transition-colors">1 MB</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SECTION 1B: Manual Quality Panel (Shown when mode == 'manual-quality') -->
+              <div id="panel-manual-quality" class="hidden space-y-3">
+                <div class="flex items-center justify-between">
+                  <label class="text-xs font-semibold text-zinc-200">
+                    Image Quality
+                  </label>
+                  <span class="text-xs font-bold font-mono px-2 py-0.5 rounded bg-zinc-950 text-yellow-400 border border-yellow-400/30" id="manual-quality-val">
+                    80%
+                  </span>
+                </div>
+
+                <div class="space-y-1">
+                  <input
+                    type="range"
+                    id="manual-quality-slider"
+                    min="1"
+                    max="100"
+                    value="80"
+                    class="w-full accent-yellow-400 cursor-pointer"
+                    oninput="onQualitySliderChange(this.value)"
+                  />
+                  <div class="flex justify-between text-[10px] text-zinc-400 font-mono">
+                    <span>1% (Max compress)</span>
+                    <span>50%</span>
+                    <span>80% (Sweet spot)</span>
+                    <span>100% (Lossless)</span>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-1.5 text-xs">
+                  <span class="text-[10px] text-zinc-400 font-medium">Presets:</span>
+                  <button type="button" onclick="setManualQuality(60)" class="px-2 py-1 rounded bg-zinc-950 border border-zinc-800 text-xs text-zinc-300 hover:border-yellow-400 hover:text-yellow-400 transition-colors">60%</button>
+                  <button type="button" onclick="setManualQuality(75)" class="px-2 py-1 rounded bg-zinc-950 border border-zinc-800 text-xs text-zinc-300 hover:border-yellow-400 hover:text-yellow-400 transition-colors">75%</button>
+                  <button type="button" onclick="setManualQuality(85)" class="px-2 py-1 rounded bg-zinc-950 border border-zinc-800 text-xs text-zinc-300 hover:border-yellow-400 hover:text-yellow-400 transition-colors">85%</button>
+                  <button type="button" onclick="setManualQuality(95)" class="px-2 py-1 rounded bg-zinc-950 border border-zinc-800 text-xs text-zinc-300 hover:border-yellow-400 hover:text-yellow-400 transition-colors">95%</button>
+                </div>
+              </div>
+
+              <!-- SECTION 2: Output Format Selection -->
+              <div class="space-y-2 pt-3 border-t border-zinc-800">
+                <div class="flex items-center justify-between">
+                  <label class="text-xs font-semibold text-zinc-200">
+                    Output Format
+                  </label>
+                  <span class="text-[10px] text-zinc-400">Settings persist across formats</span>
+                </div>
+                
+                <div class="grid grid-cols-4 gap-1.5">
+                  <button type="button" onclick="setFormat('image/jpeg')" id="fmt-jpeg" class="format-btn py-2 px-1 rounded-xl text-xs font-extrabold border border-yellow-400 bg-yellow-400/10 text-yellow-400 text-center flex flex-col items-center gap-0.5 shadow-sm">
+                    <span>JPG</span>
+                    <span class="text-[9px] font-normal text-yellow-400/80">Exam Safe</span>
+                  </button>
+                  <button type="button" onclick="setFormat('image/webp')" id="fmt-webp" class="format-btn py-2 px-1 rounded-xl text-xs font-bold border border-zinc-800 bg-zinc-950 text-zinc-400 hover:text-white hover:border-zinc-700 text-center flex flex-col items-center gap-0.5 transition-colors">
+                    <span>WebP</span>
+                    <span class="text-[9px] font-normal text-zinc-500">Smallest</span>
+                  </button>
+                  <button type="button" onclick="setFormat('image/png')" id="fmt-png" class="format-btn py-2 px-1 rounded-xl text-xs font-bold border border-zinc-800 bg-zinc-950 text-zinc-400 hover:text-white hover:border-zinc-700 text-center flex flex-col items-center gap-0.5 transition-colors">
+                    <span>PNG</span>
+                    <span class="text-[9px] font-normal text-zinc-500">Lossless</span>
+                  </button>
+                  <button type="button" onclick="setFormat('original')" id="fmt-original" class="format-btn py-2 px-1 rounded-xl text-xs font-bold border border-zinc-800 bg-zinc-950 text-zinc-400 hover:text-white hover:border-zinc-700 text-center flex flex-col items-center gap-0.5 transition-colors">
+                    <span>Auto</span>
+                    <span class="text-[9px] font-normal text-zinc-500">Original</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- SECTION 3: Dimensions & Scaling -->
+              <div class="space-y-3 pt-3 border-t border-zinc-800">
+                <div class="flex items-center justify-between">
+                  <label class="text-xs font-semibold text-zinc-200">
+                    Dimensions & Scaling
+                  </label>
+                  <button type="button" onclick="resetDimensions()" class="text-[10px] text-yellow-400 hover:underline font-bold">
+                    Reset Original
+                  </button>
+                </div>
+
+                <!-- Width and Height inputs with Lock Aspect Button -->
+                <div class="flex items-center gap-2">
+                  <div class="flex-1">
+                    <span class="text-[10px] text-zinc-400 font-mono">Width (px)</span>
+                    <input
+                      type="number"
+                      id="dim-w"
+                      placeholder="Width"
+                      class="w-full bg-zinc-950 border border-zinc-700 rounded-lg px-2.5 py-1.5 text-xs text-white font-mono focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                      oninput="onWidthChange()"
+                    />
+                  </div>
+
+                  <!-- Lock aspect button -->
+                  <div class="pt-3.5">
+                    <button
+                      type="button"
+                      id="btn-lock-aspect"
+                      onclick="toggleAspectLock()"
+                      class="p-2 rounded-lg border border-yellow-400/40 bg-zinc-950 text-yellow-400 hover:bg-zinc-800 transition-colors"
+                      title="Aspect Ratio Locked"
+                    >
+                      <svg id="icon-lock-closed" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                      <svg id="icon-lock-open" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"/></svg>
+                    </button>
+                  </div>
+
+                  <div class="flex-1">
+                    <span class="text-[10px] text-zinc-400 font-mono">Height (px)</span>
+                    <input
+                      type="number"
+                      id="dim-h"
+                      placeholder="Height"
+                      class="w-full bg-zinc-950 border border-zinc-700 rounded-lg px-2.5 py-1.5 text-xs text-white font-mono focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                      oninput="onHeightChange()"
+                    />
+                  </div>
+                </div>
+
+                <!-- Scale % buttons -->
+                <div class="flex items-center gap-1.5 pt-1">
+                  <span class="text-[10px] text-zinc-400 font-medium">Scale:</span>
+                  <div class="grid grid-cols-4 gap-1 flex-1">
+                    <button type="button" onclick="applyScalePercent(100)" class="py-1 text-[11px] rounded bg-zinc-950 border border-zinc-800 hover:border-yellow-400 hover:text-yellow-400 text-zinc-300 font-mono text-center transition-colors">100%</button>
+                    <button type="button" onclick="applyScalePercent(75)" class="py-1 text-[11px] rounded bg-zinc-950 border border-zinc-800 hover:border-yellow-400 hover:text-yellow-400 text-zinc-300 font-mono text-center transition-colors">75%</button>
+                    <button type="button" onclick="applyScalePercent(50)" class="py-1 text-[11px] rounded bg-zinc-950 border border-zinc-800 hover:border-yellow-400 hover:text-yellow-400 text-zinc-300 font-mono text-center transition-colors">50%</button>
+                    <button type="button" onclick="applyScalePercent(25)" class="py-1 text-[11px] rounded bg-zinc-950 border border-zinc-800 hover:border-yellow-400 hover:text-yellow-400 text-zinc-300 font-mono text-center transition-colors">25%</button>
+                  </div>
+                </div>
+
+                <!-- Common Dimension Presets dropdown / grid -->
+                <div class="space-y-1 pt-1">
+                  <span class="text-[10px] text-zinc-400 font-medium">Common & Exam Presets:</span>
+                  <div class="grid grid-cols-2 gap-1.5 text-[11px]">
+                    <button type="button" onclick="applyDimensionPreset(140, 60)" class="p-1.5 text-left rounded bg-zinc-950 border border-zinc-800 hover:border-yellow-400 hover:text-yellow-400 text-zinc-300 truncate transition-colors">
+                      ✍️ Signature (140×60)
+                    </button>
+                    <button type="button" onclick="applyDimensionPreset(350, 450)" class="p-1.5 text-left rounded bg-zinc-950 border border-zinc-800 hover:border-yellow-400 hover:text-yellow-400 text-zinc-300 truncate transition-colors">
+                      👤 SSC Photo (350×450)
+                    </button>
+                    <button type="button" onclick="applyDimensionPreset(200, 230)" class="p-1.5 text-left rounded bg-zinc-950 border border-zinc-800 hover:border-yellow-400 hover:text-yellow-400 text-zinc-300 truncate transition-colors">
+                      📋 IBPS Photo (200×230)
+                    </button>
+                    <button type="button" onclick="applyDimensionPreset(600, 600)" class="p-1.5 text-left rounded bg-zinc-950 border border-zinc-800 hover:border-yellow-400 hover:text-yellow-400 text-zinc-300 truncate transition-colors">
+                      🪪 Passport (600×600)
+                    </button>
+                    <button type="button" onclick="applyDimensionPreset(400, 400)" class="p-1.5 text-left rounded bg-zinc-950 border border-zinc-800 hover:border-yellow-400 hover:text-yellow-400 text-zinc-300 truncate transition-colors">
+                      🖼️ Avatar (400×400)
+                    </button>
+                    <button type="button" onclick="applyDimensionPreset(1080, 1080)" class="p-1.5 text-left rounded bg-zinc-950 border border-zinc-800 hover:border-yellow-400 hover:text-yellow-400 text-zinc-300 truncate transition-colors">
+                      📱 Square (1080×1080)
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Advanced Options -->
+                <div class="space-y-2 pt-2 text-xs text-zinc-300 border-t border-zinc-800">
+                  <label class="flex items-start gap-2 cursor-pointer">
+                    <input type="checkbox" id="auto-downscale" checked class="mt-0.5 rounded border-zinc-700 text-yellow-400 focus:ring-yellow-400 bg-zinc-950" onchange="onSettingsChanged()" />
+                    <span class="text-[11px] text-zinc-400 leading-tight">Auto-downscale dimensions if target KB cannot be reached with quality alone</span>
+                  </label>
+                  <label class="flex items-start gap-2 cursor-pointer">
+                    <input type="checkbox" id="fill-white-bg" checked class="mt-0.5 rounded border-zinc-700 text-yellow-400 focus:ring-yellow-400 bg-zinc-950" onchange="onSettingsChanged()" />
+                    <span class="text-[11px] text-zinc-400 leading-tight">Fill transparent areas with solid white (recommended for signatures & JPG)</span>
+                  </label>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Informational Portal Guide Section -->
+      <section class="max-w-5xl mx-auto rounded-2xl border border-zinc-800 bg-zinc-900 p-6 sm:p-8 space-y-6 shadow-xl">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-yellow-400/10 border border-yellow-400/30 text-xs font-bold text-yellow-400 mb-2">
+            Exam & Government Portals
+          </div>
+          <h2 class="text-lg sm:text-xl font-bold text-white">Government & Exam Portal Upload Guidelines</h2>
+          <p class="text-xs sm:text-sm text-zinc-400 mt-1">
+            Standard official specifications required by major examination boards and government application systems:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <div class="p-4 rounded-xl bg-zinc-950 border border-zinc-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-yellow-400 text-sm">SSC & UPSC Forms</span>
+              <span class="px-2 py-0.5 rounded bg-yellow-400/10 text-[10px] text-yellow-400 font-mono font-bold border border-yellow-400/30">20-50 KB</span>
+            </div>
+            <p class="text-zinc-300"><strong class="text-white">Photo:</strong> 20 KB to 50 KB (JPEG)</p>
+            <p class="text-zinc-300"><strong class="text-white">Signature:</strong> 10 KB to 20 KB (JPEG)</p>
+            <p class="text-zinc-400 text-[11px] leading-relaxed">Required dimensions: ~140×60px for signature, ~3.5×4.5cm for photo. Use white background.</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-zinc-950 border border-zinc-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-yellow-400 text-sm">Banking & IBPS / SBI</span>
+              <span class="px-2 py-0.5 rounded bg-yellow-400/10 text-[10px] text-yellow-400 font-mono font-bold border border-yellow-400/30">10-50 KB</span>
+            </div>
+            <p class="text-zinc-300"><strong class="text-white">Photo:</strong> 20 KB to 50 KB (200×230 px)</p>
+            <p class="text-zinc-300"><strong class="text-white">Thumb / Sign:</strong> 10 KB to 20 KB (140×60 px)</p>
+            <p class="text-zinc-400 text-[11px] leading-relaxed">Signatures must be in black ink on crisp white paper. Check auto-downscale for strict KB limits.</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-zinc-950 border border-zinc-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-extrabold text-yellow-400 text-sm">Passport & Visa Portals</span>
+              <span class="px-2 py-0.5 rounded bg-yellow-400/10 text-[10px] text-yellow-400 font-mono font-bold border border-yellow-400/30">100-200 KB</span>
+            </div>
+            <p class="text-zinc-300"><strong class="text-white">Photo:</strong> Max 100 KB to 200 KB</p>
+            <p class="text-zinc-300"><strong class="text-white">Dimensions:</strong> 35mm × 45mm (Square / 600×600 px)</p>
+            <p class="text-zinc-400 text-[11px] leading-relaxed">Clean, plain white or off-white background with both ears clearly visible.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Built for Every Workflow Section -->
+      <section class="max-w-5xl mx-auto space-y-4 pt-4">
+        <div class="text-center space-y-1">
+          <h2 class="text-lg sm:text-2xl font-bold tracking-tight text-white">
+            Built for Every Workflow
+          </h2>
+          <p class="text-xs sm:text-sm text-zinc-400">
+            A universal precision image tool crafted for applicants, creators, and professionals.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="rounded-2xl border border-zinc-800 bg-zinc-900 p-4 transition-all duration-200 hover:border-yellow-400/50 shadow-lg space-y-2">
+            <div class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-yellow-400/30 bg-yellow-400/10 text-yellow-400">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
+            </div>
+            <h3 class="text-sm font-bold text-white">Students & Govt Applicants</h3>
+            <p class="text-xs text-zinc-400 leading-relaxed">
+              Easily hit strict upload thresholds (&lt;20KB, &lt;50KB, &lt;100KB) for SSC, UPSC, state public service, university, and visa admission portals.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-zinc-800 bg-zinc-900 p-4 transition-all duration-200 hover:border-yellow-400/50 shadow-lg space-y-2">
+            <div class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-yellow-400/30 bg-yellow-400/10 text-yellow-400">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+            </div>
+            <h3 class="text-sm font-bold text-white">Web Developers & SEO</h3>
+            <p class="text-xs text-zinc-400 leading-relaxed">
+              Generate ultra-fast WebP and optimized lightweight JPEG assets to boost Google PageSpeed, Lighthouse, and Core Web Vitals performance.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-zinc-800 bg-zinc-900 p-4 transition-all duration-200 hover:border-yellow-400/50 shadow-lg space-y-2">
+            <div class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-yellow-400/30 bg-yellow-400/10 text-yellow-400">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <h3 class="text-sm font-bold text-white">Job Seekers & Pros</h3>
+            <p class="text-xs text-zinc-400 leading-relaxed">
+              Compress resume attachments, portfolio mockups, professional headshots, and confidential scanned IDs without losing crisp text clarity.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-zinc-800 bg-zinc-900 p-4 transition-all duration-200 hover:border-yellow-400/50 shadow-lg space-y-2">
+            <div class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-yellow-400/30 bg-yellow-400/10 text-yellow-400">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+            </div>
+            <h3 class="text-sm font-bold text-white">Creators & Designers</h3>
+            <p class="text-xs text-zinc-400 leading-relaxed">
+              Resize social media banners, avatar thumbnails, and high-res photography down to custom sizes instantly with zero data transmission.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Technology & Privacy Architecture Section -->
+      <section class="max-w-5xl mx-auto rounded-2xl border border-zinc-800 bg-zinc-900 p-6 sm:p-8 space-y-6 shadow-xl">
+        <div class="text-center max-w-2xl mx-auto space-y-2">
+          <span class="text-xs font-bold text-yellow-400 uppercase tracking-wider">
+            In-Browser Processing Engine
+          </span>
+          <h2 class="text-lg sm:text-2xl font-bold text-white">
+            How The Image Resizer Works Without Servers
+          </h2>
+          <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+            By leveraging modern browser HTML5 Canvas rendering and local memory allocation, your device processes raw image pixels with zero latency and absolute privacy.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 text-white font-bold text-sm">
+              <div class="h-7 w-7 rounded-lg bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 flex items-center justify-center">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </div>
+              <span>100% Private Memory</span>
+            </div>
+            <p class="text-xs text-zinc-400 leading-relaxed">
+              Your photos never touch a remote server or cloud database. All transformations occur exclusively inside your device RAM and are cleared immediately upon reset.
+            </p>
+          </div>
+
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 text-white font-bold text-sm">
+              <div class="h-7 w-7 rounded-lg bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 flex items-center justify-center">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+              <span>Target-KB Precision</span>
+            </div>
+            <p class="text-xs text-zinc-400 leading-relaxed">
+              An intelligent iterative algorithm converges on the exact maximum visual fidelity that stays under your specified target KB without guesswork.
+            </p>
+          </div>
+
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 text-white font-bold text-sm">
+              <div class="h-7 w-7 rounded-lg bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 flex items-center justify-center">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+              </div>
+              <span>Zero Limits, Free Forever</span>
+            </div>
+            <p class="text-xs text-zinc-400 leading-relaxed">
+              No subscription tiers, no hidden watermarks, and no file quantity caps. Completely free forever with zero sign-up or login required.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step-by-step How-To Guide -->
+      <section class="max-w-5xl mx-auto rounded-2xl border border-zinc-800 bg-zinc-900 p-6 sm:p-8 space-y-6 shadow-xl">
+        <div>
+          <h2 class="text-lg sm:text-xl font-bold text-white">How to Resize Photos & Signatures to 20KB or 50KB</h2>
+          <p class="text-xs sm:text-sm text-zinc-400 mt-1">
+            Follow these 3 quick steps to prepare exam-ready images:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <div class="p-4 rounded-xl bg-zinc-950 border border-zinc-800 space-y-2">
+            <div class="flex items-center gap-2 text-yellow-400 font-bold text-sm">
+              <span class="h-6 w-6 rounded-full bg-yellow-400/10 border border-yellow-400/30 flex items-center justify-center text-xs text-yellow-400">1</span>
+              <span>Upload or Paste</span>
+            </div>
+            <p class="text-zinc-400 leading-relaxed">
+              Drag and drop your photo or signature file into the drop zone, click browse, or press <kbd class="px-1.5 py-0.5 rounded bg-zinc-800 text-yellow-400 font-mono text-[10px] border border-zinc-700">Ctrl+V</kbd> to paste directly from your clipboard.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-zinc-950 border border-zinc-800 space-y-2">
+            <div class="flex items-center gap-2 text-yellow-400 font-bold text-sm">
+              <span class="h-6 w-6 rounded-full bg-yellow-400/10 border border-yellow-400/30 flex items-center justify-center text-xs text-yellow-400">2</span>
+              <span>Select Target KB</span>
+            </div>
+            <p class="text-zinc-400 leading-relaxed">
+              Click the <strong class="text-white">20KB</strong> button for signatures or <strong class="text-white">50KB</strong> for passport photos. The engine immediately optimizes the image and displays a live side-by-side comparison.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-zinc-950 border border-zinc-800 space-y-2">
+            <div class="flex items-center gap-2 text-yellow-400 font-bold text-sm">
+              <span class="h-6 w-6 rounded-full bg-yellow-400/10 border border-yellow-400/30 flex items-center justify-center text-xs text-yellow-400">3</span>
+              <span>Download Instantly</span>
+            </div>
+            <p class="text-zinc-400 leading-relaxed">
+              Check the final file size badge to verify that it strictly satisfies your portal limit, then click <strong class="text-white">Download Optimized Image</strong> to save the ready file.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dedicated FAQ Section -->
+      <section class="max-w-5xl mx-auto space-y-4 pt-2">
+        <div class="text-center space-y-1">
+          <h2 class="text-lg sm:text-2xl font-bold tracking-tight text-white">
+            Frequently Asked Questions
+          </h2>
+          <p class="text-xs sm:text-sm text-zinc-400">
+            Answers to common questions about target file size compression and photo optimization.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div class="p-4 rounded-xl bg-zinc-900 border border-zinc-800 shadow-lg space-y-1.5">
+            <h3 class="font-bold text-white text-sm">How does the Target KB compression work?</h3>
+            <p class="text-zinc-400 leading-relaxed">
+              The tool tests compression quality parameters in milliseconds using HTML5 Canvas to produce the highest possible visual clarity that strictly stays below your selected KB limit.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-zinc-900 border border-zinc-800 shadow-lg space-y-1.5">
+            <h3 class="font-bold text-white text-sm">What if a 4K image cannot fit in 20KB even at low quality?</h3>
+            <p class="text-zinc-400 leading-relaxed">
+              With the "Auto-downscale" option enabled, the engine automatically scales down the pixel dimensions incrementally until the file size comfortably meets your target KB threshold.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-zinc-900 border border-zinc-800 shadow-lg space-y-1.5">
+            <h3 class="font-bold text-white text-sm">Which format should I choose for government forms?</h3>
+            <p class="text-zinc-400 leading-relaxed">
+              <strong class="text-white">JPG / JPEG</strong> is the mandatory universal standard for SSC, UPSC, IBPS, and state PSC job forms. Use WebP for websites and apps, and PNG when you need transparent backgrounds.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-zinc-900 border border-zinc-800 shadow-lg space-y-1.5">
+            <h3 class="font-bold text-white text-sm">Are my photos uploaded or stored anywhere?</h3>
+            <p class="text-zinc-400 leading-relaxed">
+              Never. All processing happens entirely inside your browser memory. You can even disconnect your Wi-Fi or turn on Airplane mode and the tool will continue working perfectly.
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Privacy Modal -->
+    <div id="privacy-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+      <div class="relative w-full max-w-lg rounded-2xl border border-zinc-800 bg-zinc-900 p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+        <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
+          <div class="flex items-center gap-2">
+            <div class="h-8 w-8 rounded-lg bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 flex items-center justify-center">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            </div>
+            <h3 class="text-base font-bold text-white">Browser Security & Privacy Guarantee</h3>
+          </div>
+          <button onclick="closePrivacyModal()" class="rounded-lg p-1 text-zinc-400 hover:bg-zinc-800 hover:text-white transition-colors">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <div class="space-y-3 text-xs text-zinc-300 leading-relaxed">
+          <div class="p-3 rounded-xl bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 flex items-start gap-2.5">
+            <svg class="w-5 h-5 flex-shrink-0 text-yellow-400 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <p><strong class="text-white">Your files never leave your computer or phone.</strong> Brandique Tools executes 100% locally in your browser's private memory sandbox.</p>
+          </div>
+
+          <div class="space-y-2 pt-1">
+            <h4 class="font-bold text-white">How Your Data is Protected:</h4>
+            <ul class="space-y-1.5 pl-4 list-disc text-zinc-400">
+              <li><strong class="text-zinc-200">Local Canvas Memory:</strong> Images are drawn onto an internal HTML5 canvas. No HTTP upload requests are ever dispatched.</li>
+              <li><strong class="text-zinc-200">Zero Cloud Telemetry:</strong> You can use this tool completely offline or in Airplane Mode.</li>
+              <li><strong class="text-zinc-200">Instant Memory Cleanup:</strong> Temporary memory allocations are revoked the moment you reset or close your browser tab.</li>
+              <li><strong class="text-zinc-200">Safe for Official IDs:</strong> Perfectly compliant and safe for government IDs, student marksheets, certificates, and personal signatures.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pt-2 flex justify-end">
+          <button onclick="closePrivacyModal()" class="px-4 py-2 rounded-xl bg-yellow-400 hover:bg-yellow-300 text-black font-extrabold text-xs transition-colors">
+            Understood
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- How It Works / FAQ Modal -->
+    <div id="faq-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+      <div class="relative w-full max-w-lg rounded-2xl border border-zinc-800 bg-zinc-900 p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+        <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
+          <div class="flex items-center gap-2">
+            <div class="h-8 w-8 rounded-lg bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 flex items-center justify-center">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h3 class="text-base font-bold text-white">How The Image Resizer Works</h3>
+          </div>
+          <button onclick="closeFaqModal()" class="rounded-lg p-1 text-zinc-400 hover:bg-zinc-800 hover:text-white transition-colors">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <div class="space-y-3 text-xs text-zinc-300 leading-relaxed">
+          <div class="p-3 rounded-xl bg-zinc-950 border border-zinc-800 space-y-1">
+            <h4 class="font-bold text-white">1. Binary Search Quality Optimization</h4>
+            <p class="text-zinc-400">Instead of guessing random quality percentages, the tool runs a high-precision binary search algorithm on the HTML5 canvas compression parameter to reach the exact maximum visual fidelity that satisfies your target file size.</p>
+          </div>
+
+          <div class="p-3 rounded-xl bg-zinc-950 border border-zinc-800 space-y-1">
+            <h4 class="font-bold text-white">2. Intelligent Auto-Downscaling</h4>
+            <p class="text-zinc-400">If an original photo has massive dimensions (e.g. 4000×3000) and cannot fit under 20KB or 50KB through compression alone, the engine automatically steps down pixel dimensions while preserving the exact aspect ratio.</p>
+          </div>
+
+          <div class="p-3 rounded-xl bg-zinc-950 border border-zinc-800 space-y-1">
+            <h4 class="font-bold text-white">3. Signature Optimization & White Background</h4>
+            <p class="text-zinc-400">Signatures with transparent backgrounds often display black or dark rectangles when converted to JPEG. The "Fill transparent areas with solid white" option automatically creates clean white backgrounds required by exam boards.</p>
+          </div>
+        </div>
+
+        <div class="pt-2 flex justify-end">
+          <button onclick="closeFaqModal()" class="px-4 py-2 rounded-xl bg-yellow-400 hover:bg-yellow-300 text-black font-extrabold text-xs transition-colors">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fullscreen High-Resolution Zoom & Pan Inspection Modal -->
+    <div id="zoom-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-2 sm:p-4 bg-black/90 backdrop-blur-md">
+      <div class="relative w-full max-w-6xl h-[94vh] rounded-2xl border border-zinc-800 bg-zinc-900 flex flex-col overflow-hidden shadow-2xl">
+        
+        <!-- Zoom Modal Header -->
+        <div class="flex items-center justify-between px-4 py-3 border-b border-zinc-800 bg-zinc-950 flex-shrink-0">
+          <div class="flex items-center gap-3">
+            <div class="h-8 w-8 rounded-lg bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 flex items-center justify-center">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+            </div>
+            <div>
+              <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                <span>Pixel & Detail Zoom Inspector</span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-yellow-400 font-normal hidden sm:inline border border-zinc-700" id="zoom-filename-badge">photo.jpg</span>
+              </h3>
+              <p class="text-[11px] text-zinc-400 hidden sm:block">Scroll wheel to zoom in/out • Click and drag to pan</p>
+            </div>
+          </div>
+
+          <!-- Zoom Toolbar Controls -->
+          <div class="flex items-center gap-1 sm:gap-2">
+            <!-- Zoom In / Out / Reset -->
+            <div class="flex items-center bg-zinc-900 rounded-lg border border-zinc-800 p-0.5 text-xs">
+              <button
+                type="button"
+                onclick="adjustZoom(-0.25)"
+                class="p-1.5 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded transition-colors"
+                title="Zoom Out"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+              </button>
+              <span id="zoom-level-text" class="px-2 font-mono text-xs text-yellow-400 font-bold min-w-[50px] text-center">
+                100%
+              </span>
+              <button
+                type="button"
+                onclick="adjustZoom(0.25)"
+                class="p-1.5 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded transition-colors"
+                title="Zoom In"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+              </button>
+            </div>
+
+            <button
+              type="button"
+              onclick="resetZoomStage()"
+              class="px-2.5 py-1.5 text-xs rounded-lg bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-700 font-medium transition-colors hidden sm:block"
+            >
+              Fit
+            </button>
+
+            <!-- Mode Switcher inside Modal -->
+            <div class="flex items-center bg-zinc-900 rounded-lg border border-zinc-800 p-0.5 text-xs">
+              <button
+                type="button"
+                id="modal-view-opt"
+                onclick="setModalViewMode('opt')"
+                class="px-2 py-1 font-bold rounded bg-yellow-400 text-black"
+              >
+                Optimized
+              </button>
+              <button
+                type="button"
+                id="modal-view-side"
+                onclick="setModalViewMode('side')"
+                class="px-2 py-1 font-medium text-zinc-400 hover:text-white rounded"
+              >
+                Side-by-Side
+              </button>
+            </div>
+
+            <!-- Close Button -->
+            <button
+              type="button"
+              onclick="closeZoomModal()"
+              class="p-1.5 rounded-lg text-zinc-400 hover:bg-zinc-800 hover:text-white transition-colors ml-1"
+              title="Close (Esc)"
+            >
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Zoom Viewport Area -->
+        <div
+          id="zoom-viewport"
+          class="flex-1 w-full h-full relative overflow-hidden bg-checkerboard flex items-center justify-center select-none cursor-grab active:cursor-grabbing"
+        >
+          <!-- Movable and Scalable Stage -->
+          <div id="zoom-stage" class="relative inline-flex items-center justify-center transition-transform duration-75 origin-center">
+            
+            <!-- OPT ONLY VIEW -->
+            <div id="zoom-view-opt-container" class="relative max-w-full max-h-full flex items-center justify-center">
+              <img id="zoom-opt-img" src="" alt="Optimized Preview" class="max-w-none pointer-events-none rounded shadow-2xl" />
+            </div>
+
+            <!-- SIDE-BY-SIDE ZOOM VIEW -->
+            <div id="zoom-view-side-container" class="hidden items-center gap-6 p-4">
+              <div class="flex flex-col items-center gap-2">
+                <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-zinc-950 text-white border border-zinc-800">Original</span>
+                <img id="zoom-side-orig-img" src="" alt="Original Full" class="max-w-none pointer-events-none rounded shadow-2xl" />
+              </div>
+              <div class="flex flex-col items-center gap-2">
+                <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-yellow-400 text-black">Optimized</span>
+                <img id="zoom-side-opt-img" src="" alt="Optimized Full" class="max-w-none pointer-events-none rounded shadow-2xl" />
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Zoom Modal Footer Bar -->
+        <div class="flex items-center justify-between px-4 py-2.5 border-t border-zinc-800 bg-zinc-950 text-xs text-zinc-300 flex-shrink-0">
+          <div class="flex items-center gap-4">
+            <span id="zoom-stats-orig" class="text-zinc-400">Orig: <strong class="text-white">0 KB</strong></span>
+            <span class="text-zinc-700">•</span>
+            <span id="zoom-stats-opt" class="text-yellow-400">Optimized: <strong class="text-yellow-400 font-mono font-bold">0 KB</strong></span>
+            <span class="text-zinc-700 hidden sm:inline">•</span>
+            <span id="zoom-stats-dims" class="text-zinc-400 hidden sm:inline">0 × 0 px</span>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button
+              type="button"
+              onclick="downloadResult()"
+              class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-yellow-400 hover:bg-yellow-300 text-black font-extrabold transition-colors"
+            >
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+              <span>Download</span>
+            </button>
+            <button
+              type="button"
+              onclick="closeZoomModal()"
+              class="px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-300 transition-colors"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Global Footer -->
+    <footer class="border-t border-zinc-900 bg-zinc-950 py-10 text-xs text-zinc-500 mt-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <div class="h-7 w-7 rounded-lg bg-yellow-400 flex items-center justify-center text-black font-extrabold text-xs shadow-md">
+            B
+          </div>
+          <div>
+            <span class="text-white font-bold">Brandique Tools</span>
+            <span class="mx-2 text-zinc-700">•</span>
+            <span class="text-zinc-400">Photo & Signature Resizer</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-6">
+          <a href="index.html" class="hover:text-yellow-400 transition-colors">Tools Directory</a>
+          <a href="image-resizer.html" class="text-yellow-400 font-bold">Image Resizer</a>
+          <a href="age-calculator.html" class="hover:text-yellow-400 transition-colors">Age Calculator</a>
+        </div>
+
+        <div class="text-center sm:text-right text-zinc-500">
+          <p>© 2026 Brandique Tools. 100% In-Browser Privacy.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Core Compression Engine in Pure Vanilla JS -->
+    <script>
+      // State Management
+      let currentFile = null;
+      let currentImageElement = null;
+      let originalBlob = null;
+      let originalWidth = 0;
+      let originalHeight = 0;
+      let originalMimeType = 'image/jpeg';
+      let originalSize = 0;
+      
+      let processedBlob = null;
+      let processedUrl = '';
+      let activeFormat = 'image/jpeg';
+      let optimizationMode = 'target-kb'; // 'target-kb' or 'manual-quality'
+      let targetUnit = 'KB'; // 'KB' or 'MB'
+      let aspectLocked = true;
+      let currentPreviewMode = 'side'; // 'side' or 'split'
+      let debounceTimer = null;
+
+      // Zoom Modal State
+      let zoomLevel = 1.0;
+      let zoomPanX = 0;
+      let zoomPanY = 0;
+      let isZoomDragging = false;
+      let zoomDragStartX = 0;
+      let zoomDragStartY = 0;
+      let modalViewMode = 'opt'; // 'opt' or 'side'
+
+      // DOM Elements
+      const dropZone = document.getElementById('drop-zone');
+      const fileInput = document.getElementById('file-input');
+      const workspaceContainer = document.getElementById('workspace-container');
+      const previewSection = document.getElementById('preview-section');
+      const targetKbInput = document.getElementById('target-kb-input');
+      const targetUnitSelect = document.getElementById('target-unit-select');
+      const dimW = document.getElementById('dim-w');
+      const dimH = document.getElementById('dim-h');
+      const autoDownscaleCheck = document.getElementById('auto-downscale');
+      const fillWhiteBgCheck = document.getElementById('fill-white-bg');
+      const manualQualitySlider = document.getElementById('manual-quality-slider');
+      const manualQualityVal = document.getElementById('manual-quality-val');
+
+      // Helper: Format Bytes to human readable string
+      function formatBytes(bytes) {
+        if (!bytes || bytes === 0) return '0 B';
+        const k = 1024;
+        const sizes = ['B', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return (bytes / Math.pow(k, i)).toFixed(1) + ' ' + sizes[i];
+      }
+
+      // Drag and drop event bindings
+      ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dropZone.classList.add('border-brand-500', 'bg-slate-900/90');
+        }, false);
+      });
+
+      ['dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dropZone.classList.remove('border-brand-500', 'bg-slate-900/90');
+        }, false);
+      });
+
+      dropZone.addEventListener('drop', (e) => {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        if (files && files.length > 0) {
+          handleFile(files[0]);
+        }
+      });
+
+      dropZone.addEventListener('click', () => {
+        fileInput.click();
+      });
+
+      fileInput.addEventListener('change', (e) => {
+        if (e.target.files && e.target.files.length > 0) {
+          handleFile(e.target.files[0]);
+        }
+      });
+
+      // Paste from clipboard support (Ctrl+V)
+      window.addEventListener('paste', (e) => {
+        const items = (e.clipboardData || e.originalEvent.clipboardData).items;
+        for (let index in items) {
+          const item = items[index];
+          if (item.kind === 'file' && item.type.startsWith('image/')) {
+            const blob = item.getAsFile();
+            handleFile(blob);
+            break;
+          }
+        }
+      });
+
+      // Handle file loading
+      function handleFile(file) {
+        if (!file || !file.type.startsWith('image/')) {
+          alert('Please select a valid image file (JPG, PNG, WebP).');
+          return;
+        }
+
+        currentFile = file;
+        originalBlob = file;
+        originalSize = file.size;
+        originalMimeType = file.type || 'image/jpeg';
+        
+        // Retain current format selection across uploads
+        updateFormatUI();
+
+        const url = URL.createObjectURL(file);
+        const img = new Image();
+        img.onload = () => {
+          currentImageElement = img;
+          originalWidth = img.naturalWidth;
+          originalHeight = img.naturalHeight;
+
+          // Update UI
+          document.getElementById('preview-image-name').innerText = file.name || 'image.jpg';
+          document.getElementById('orig-img').src = url;
+          document.getElementById('orig-size-badge').innerText = formatBytes(originalSize);
+          document.getElementById('orig-dimensions').innerText = `${originalWidth} × ${originalHeight} px`;
+          document.getElementById('orig-format').innerText = (file.type || 'image/jpeg').replace('image/', '');
+
+          // Populate split view original
+          document.getElementById('split-orig-img').src = url;
+
+          dimW.value = originalWidth;
+          dimH.value = originalHeight;
+
+          // Show workspace
+          workspaceContainer.classList.remove('hidden');
+
+          // Auto-scroll directly to preview section
+          setTimeout(() => {
+            previewSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+
+          // Run initial compression
+          runCompression();
+        };
+        img.src = url;
+      }
+
+      // Convert Canvas to Blob helper
+      function canvasToBlob(canvas, mimeType, quality) {
+        return new Promise((resolve, reject) => {
+          canvas.toBlob((blob) => {
+            if (blob) resolve(blob);
+            else reject(new Error('Canvas to Blob conversion failed'));
+          }, mimeType, quality);
+        });
+      }
+
+      // Render image to canvas helper
+      function renderImageToCanvas(img, targetWidth, targetHeight, fillBackground = false, backgroundColor = '#ffffff') {
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.max(1, Math.round(targetWidth));
+        canvas.height = Math.max(1, Math.round(targetHeight));
+        const ctx = canvas.getContext('2d', { willReadFrequently: true });
+        
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+
+        if (fillBackground) {
+          ctx.fillStyle = backgroundColor;
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        return canvas;
+      }
+
+      // Exact Target Size Padding Helper (Guarantees exact KB for exam portals & specifications)
+      async function padBlobToTargetSize(blob, targetBytes, mimeType) {
+        if (!blob || blob.size >= targetBytes || blob.size >= targetBytes * 0.985) {
+          return blob;
+        }
+
+        const diff = targetBytes - blob.size;
+        if (diff < 8) return blob;
+
+        try {
+          const buffer = await blob.arrayBuffer();
+          const uint8 = new Uint8Array(buffer);
+
+          // 1. JPEG standard COM marker insertion
+          if (mimeType === 'image/jpeg' || (uint8[0] === 0xFF && uint8[1] === 0xD8)) {
+            let eoiPos = uint8.length - 2;
+            while (eoiPos > 0 && !(uint8[eoiPos] === 0xFF && uint8[eoiPos + 1] === 0xD9)) {
+              eoiPos--;
+            }
+            if (eoiPos <= 0) eoiPos = uint8.length;
+
+            let remaining = diff;
+            const segments = [];
+            const paddingMsg = "Brandique Tools Exact Target Size Optimizer ";
+
+            while (remaining >= 4) {
+              const segPayloadLen = Math.min(remaining - 4, 65530);
+              const segTotalLen = segPayloadLen + 4;
+              const markerLen = segPayloadLen + 2;
+
+              const seg = new Uint8Array(segTotalLen);
+              seg[0] = 0xFF;
+              seg[1] = 0xFE; // COM marker
+              seg[2] = (markerLen >> 8) & 0xFF;
+              seg[3] = markerLen & 0xFF;
+
+              for (let i = 0; i < segPayloadLen; i++) {
+                seg[4 + i] = paddingMsg.charCodeAt(i % paddingMsg.length);
+              }
+              segments.push(seg);
+              remaining -= segTotalLen;
+            }
+
+            const totalSize = eoiPos + segments.reduce((sum, s) => sum + s.length, 0) + 2;
+            const finalArr = new Uint8Array(totalSize);
+            finalArr.set(uint8.subarray(0, eoiPos), 0);
+            let offset = eoiPos;
+            for (const seg of segments) {
+              finalArr.set(seg, offset);
+              offset += seg.length;
+            }
+            finalArr[offset] = 0xFF;
+            finalArr[offset + 1] = 0xD9;
+
+            return new Blob([finalArr], { type: 'image/jpeg' });
+          }
+
+          // 2. WebP RIFF padding chunk insertion
+          if (mimeType === 'image/webp' || (uint8[0] === 0x52 && uint8[1] === 0x49 && uint8[2] === 0x46 && uint8[3] === 0x46)) {
+            let chunkPayloadLen = diff - 8;
+            if (chunkPayloadLen % 2 !== 0) chunkPayloadLen--;
+            if (chunkPayloadLen > 0) {
+              const padChunk = new Uint8Array(8 + chunkPayloadLen);
+              padChunk[0] = 0x50; padChunk[1] = 0x41; padChunk[2] = 0x44; padChunk[3] = 0x20; // 'PAD '
+              padChunk[4] = chunkPayloadLen & 0xFF;
+              padChunk[5] = (chunkPayloadLen >> 8) & 0xFF;
+              padChunk[6] = (chunkPayloadLen >> 16) & 0xFF;
+              padChunk[7] = (chunkPayloadLen >> 24) & 0xFF;
+
+              const finalArr = new Uint8Array(uint8.length + padChunk.length);
+              finalArr.set(uint8, 0);
+              finalArr.set(padChunk, uint8.length);
+
+              const newRiffLen = finalArr.length - 8;
+              finalArr[4] = newRiffLen & 0xFF;
+              finalArr[5] = (newRiffLen >> 8) & 0xFF;
+              finalArr[6] = (newRiffLen >> 16) & 0xFF;
+              finalArr[7] = (newRiffLen >> 24) & 0xFF;
+
+              return new Blob([finalArr], { type: 'image/webp' });
+            }
+          }
+
+          // 3. PNG tEXt padding chunk insertion
+          if (mimeType === 'image/png' || (uint8[0] === 0x89 && uint8[1] === 0x50 && uint8[2] === 0x4E && uint8[3] === 0x47)) {
+            let iendPos = uint8.length - 12;
+            if (iendPos > 8) {
+              let chunkDataLen = diff - 12;
+              if (chunkDataLen > 10) {
+                const keyword = "Comment\0";
+                const payload = new Uint8Array(chunkDataLen);
+                for (let i = 0; i < keyword.length; i++) payload[i] = keyword.charCodeAt(i);
+
+                const chunk = new Uint8Array(12 + chunkDataLen);
+                chunk[0] = (chunkDataLen >> 24) & 0xFF;
+                chunk[1] = (chunkDataLen >> 16) & 0xFF;
+                chunk[2] = (chunkDataLen >> 8) & 0xFF;
+                chunk[3] = chunkDataLen & 0xFF;
+                chunk[4] = 0x74; chunk[5] = 0x45; chunk[6] = 0x58; chunk[7] = 0x74; // 'tEXt'
+                chunk.set(payload, 8);
+
+                const finalArr = new Uint8Array(iendPos + chunk.length + 12);
+                finalArr.set(uint8.subarray(0, iendPos), 0);
+                finalArr.set(chunk, iendPos);
+                finalArr.set(uint8.subarray(iendPos), iendPos + chunk.length);
+
+                return new Blob([finalArr], { type: 'image/png' });
+              }
+            }
+          }
+        } catch (err) {
+          console.warn('Target padding skipped:', err);
+        }
+
+        return blob;
+      }
+
+      // High-Precision Compression Engine
+      async function runCompression() {
+        if (!currentImageElement) return;
+
+        const progressBar = document.getElementById('processing-bar');
+        const progressFill = document.getElementById('progress-fill');
+        const progressPercent = document.getElementById('progress-percent');
+        
+        progressBar.classList.remove('hidden');
+        progressFill.style.width = '20%';
+        progressPercent.innerText = '20%';
+
+        const startTime = performance.now();
+
+        // Calculate Target Bytes
+        const rawTargetNum = parseFloat(targetKbInput.value) || 50;
+        const targetBytes = targetUnit === 'MB' ? Math.round(rawTargetNum * 1024 * 1024) : Math.round(rawTargetNum * 1024);
+
+        const effectiveMimeType = activeFormat === 'original' ? originalMimeType : activeFormat;
+        const isJpeg = effectiveMimeType === 'image/jpeg';
+        const fillWhite = isJpeg && fillWhiteBgCheck.checked;
+
+        let curW = parseInt(dimW.value) || originalWidth;
+        let curH = parseInt(dimH.value) || originalHeight;
+
+        let canvas = renderImageToCanvas(currentImageElement, curW, curH, fillWhite, '#ffffff');
+
+        let finalBlob = null;
+        let finalQuality = 0.85;
+
+        // MODE 1: Manual Quality (%)
+        if (optimizationMode === 'manual-quality') {
+          const q = (parseInt(manualQualitySlider.value) || 80) / 100;
+          finalBlob = await canvasToBlob(canvas, effectiveMimeType, q);
+          finalQuality = q;
+        } 
+        // MODE 2: Target Size (KB/MB) - Precision Two-Stage Scaling & Adaptive Binary Search
+        else {
+          progressFill.style.width = '45%';
+          progressPercent.innerText = '45%';
+
+          if (effectiveMimeType === 'image/png') {
+            // PNG lossless mode with dimension tuning
+            let testBlob = await canvasToBlob(canvas, effectiveMimeType);
+            if (testBlob.size > targetBytes && autoDownscaleCheck.checked) {
+              let lowScale = 0.05;
+              let highScale = 1.0;
+              let bestScaledBlob = testBlob;
+
+              for (let i = 0; i < 7; i++) {
+                const midScale = (lowScale + highScale) / 2;
+                const testW = Math.max(16, Math.round(curW * midScale));
+                const testH = Math.max(16, Math.round(curH * midScale));
+                const scaledCanvas = renderImageToCanvas(currentImageElement, testW, testH, false);
+                const blob = await canvasToBlob(scaledCanvas, effectiveMimeType);
+
+                if (blob.size <= targetBytes) {
+                  bestScaledBlob = blob;
+                  canvas = scaledCanvas;
+                  lowScale = midScale;
+                } else {
+                  highScale = midScale;
+                }
+              }
+              finalBlob = bestScaledBlob;
+            } else {
+              finalBlob = testBlob;
+            }
+            finalQuality = 1.0;
+          } else {
+            // JPEG or WebP Precision Compression
+            // Step 1: Test at high quality 0.85
+            const testBlob85 = await canvasToBlob(canvas, effectiveMimeType, 0.85);
+
+            if (testBlob85.size <= targetBytes) {
+              // Fits comfortably at native dimensions! Search between 0.85 and 0.98 to get as close to targetBytes as possible
+              let lowQ = 0.85;
+              let highQ = 0.98;
+              let bestBlob = testBlob85;
+              let bestQ = 0.85;
+
+              for (let i = 0; i < 8; i++) {
+                const midQ = (lowQ + highQ) / 2;
+                const blob = await canvasToBlob(canvas, effectiveMimeType, midQ);
+                if (blob.size <= targetBytes) {
+                  bestBlob = blob;
+                  bestQ = midQ;
+                  lowQ = midQ; // Try to get as close to target as possible with highest quality
+                } else {
+                  highQ = midQ;
+                }
+              }
+              finalBlob = bestBlob;
+              finalQuality = bestQ;
+            } else {
+              // Exceeds targetBytes at 0.85. Test at moderate quality 0.40
+              const testBlob40 = await canvasToBlob(canvas, effectiveMimeType, 0.40);
+
+              if (testBlob40.size <= targetBytes) {
+                // Fits without dimension downscaling by adjusting quality between 0.40 and 0.85!
+                let lowQ = 0.40;
+                let highQ = 0.85;
+                let bestBlob = testBlob40;
+                let bestQ = 0.40;
+
+                for (let i = 0; i < 8; i++) {
+                  const midQ = (lowQ + highQ) / 2;
+                  const blob = await canvasToBlob(canvas, effectiveMimeType, midQ);
+                  if (blob.size <= targetBytes) {
+                    bestBlob = blob;
+                    bestQ = midQ;
+                    lowQ = midQ;
+                  } else {
+                    highQ = midQ;
+                  }
+                }
+                finalBlob = bestBlob;
+                finalQuality = bestQ;
+              } else if (autoDownscaleCheck.checked) {
+                // Cannot fit at 0.40 quality without downscaling.
+                // Scale canvas dimensions so that at high quality (~0.78), the file size hits ~96% of targetBytes!
+                const scaleFactor = Math.min(0.95, Math.sqrt((targetBytes * 0.96) / testBlob85.size));
+                const scaledW = Math.max(20, Math.round(curW * scaleFactor));
+                const scaledH = Math.max(20, Math.round(curH * scaleFactor));
+                canvas = renderImageToCanvas(currentImageElement, scaledW, scaledH, fillWhite, '#ffffff');
+
+                // Search quality on the downscaled canvas
+                let lowQ = 0.35;
+                let highQ = 0.96;
+                let bestBlob = null;
+                let bestQ = 0.80;
+
+                for (let j = 0; j < 9; j++) {
+                  const midQ = (lowQ + highQ) / 2;
+                  const blob = await canvasToBlob(canvas, effectiveMimeType, midQ);
+                  if (blob.size <= targetBytes) {
+                    bestBlob = blob;
+                    bestQ = midQ;
+                    lowQ = midQ;
+                  } else {
+                    highQ = midQ;
+                  }
+                }
+                finalBlob = bestBlob || (await canvasToBlob(canvas, effectiveMimeType, 0.45));
+                finalQuality = bestQ;
+              } else {
+                // Downscaling not allowed, retain best quality under target
+                finalBlob = testBlob40;
+                finalQuality = 0.40;
+              }
+            }
+          }
+
+          // Exact Target Size padding (Prevents 20 KB becoming 7 KB for low entropy signatures & photos)
+          if (finalBlob && finalBlob.size < targetBytes) {
+            finalBlob = await padBlobToTargetSize(finalBlob, targetBytes, effectiveMimeType);
+          }
+        }
+
+        const endTime = performance.now();
+        const duration = Math.round(endTime - startTime);
+
+        if (processedUrl) {
+          URL.revokeObjectURL(processedUrl);
+        }
+
+        processedBlob = finalBlob;
+        processedUrl = URL.createObjectURL(finalBlob);
+
+        // Update Side-by-Side UI
+        document.getElementById('opt-img').src = processedUrl;
+        document.getElementById('opt-size-badge').innerText = formatBytes(finalBlob.size);
+        document.getElementById('opt-dimensions').innerText = `${canvas.width} × ${canvas.height} px`;
+        
+        // Update Split-View UI
+        document.getElementById('split-opt-img').src = processedUrl;
+
+        // Bandwidth & Reduction calculation
+        const savedBytes = Math.max(0, originalSize - finalBlob.size);
+        const reduction = originalSize > 0 ? Math.round(((originalSize - finalBlob.size) / originalSize) * 100) : 0;
+        document.getElementById('opt-reduction').innerText = reduction >= 0 ? `-${reduction}%` : `+${Math.abs(reduction)}%`;
+
+        const displayTarget = optimizationMode === 'manual-quality' ? `${manualQualitySlider.value}% Quality` : `${rawTargetNum} ${targetUnit}`;
+        document.getElementById('stat-target-display').innerText = displayTarget;
+        document.getElementById('stat-time-display').innerText = `${duration}ms`;
+        document.getElementById('stat-quality-display').innerText = `${Math.round(finalQuality * 100)}%`;
+        document.getElementById('stat-bandwidth-saved').innerText = formatBytes(savedBytes);
+        document.getElementById('btn-download-size').innerText = formatBytes(finalBlob.size);
+
+        // Update Zoom Modal elements if open
+        const zoomOptImg = document.getElementById('zoom-opt-img');
+        const zoomSideOptImg = document.getElementById('zoom-side-opt-img');
+        if (zoomOptImg) zoomOptImg.src = processedUrl;
+        if (zoomSideOptImg) zoomSideOptImg.src = processedUrl;
+        const zoomStatsOpt = document.getElementById('zoom-stats-opt');
+        if (zoomStatsOpt) zoomStatsOpt.innerHTML = `Optimized: <strong class="text-emerald-300">${formatBytes(finalBlob.size)}</strong>`;
+        const zoomStatsDims = document.getElementById('zoom-stats-dims');
+        if (zoomStatsDims) zoomStatsDims.innerText = `${canvas.width} × ${canvas.height} px`;
+
+        progressFill.style.width = '100%';
+        progressPercent.innerText = '100%';
+        setTimeout(() => {
+          progressBar.classList.add('hidden');
+        }, 200);
+      }
+
+      // Settings debounce trigger
+      function onSettingsChanged() {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => {
+          runCompression();
+        }, 200);
+      }
+
+      // Mode switch (Target Size vs. Manual Quality)
+      function setOptimizationMode(mode) {
+        optimizationMode = mode;
+        const tabTarget = document.getElementById('tab-mode-target');
+        const tabQuality = document.getElementById('tab-mode-quality');
+        const panelTarget = document.getElementById('panel-target-kb');
+        const panelQuality = document.getElementById('panel-manual-quality');
+
+        if (mode === 'target-kb') {
+          tabTarget.className = 'py-1.5 px-2 rounded-lg font-bold bg-yellow-400 text-black transition-all text-center flex items-center justify-center gap-1.5';
+          tabQuality.className = 'py-1.5 px-2 rounded-lg font-medium text-zinc-400 hover:text-white transition-all text-center flex items-center justify-center gap-1.5';
+          panelTarget.classList.remove('hidden');
+          panelQuality.classList.add('hidden');
+        } else {
+          tabQuality.className = 'py-1.5 px-2 rounded-lg font-bold bg-yellow-400 text-black transition-all text-center flex items-center justify-center gap-1.5';
+          tabTarget.className = 'py-1.5 px-2 rounded-lg font-medium text-zinc-400 hover:text-white transition-all text-center flex items-center justify-center gap-1.5';
+          panelQuality.classList.remove('hidden');
+          panelTarget.classList.add('hidden');
+        }
+
+        onSettingsChanged();
+      }
+
+      // Set target size & unit
+      function setTargetSize(num, unit = 'KB') {
+        targetKbInput.value = num;
+        targetUnit = unit;
+        if (targetUnitSelect) targetUnitSelect.value = unit;
+        setOptimizationMode('target-kb');
+        onSettingsChanged();
+      }
+
+      function setTargetKB(kb) {
+        setTargetSize(kb, 'KB');
+      }
+
+      function applyPreset(kb, label) {
+        setTargetSize(kb, 'KB');
+        if (!currentImageElement) {
+          loadSample(kb === 20 ? 'signature' : 'photo');
+        }
+      }
+
+      function onUnitChanged() {
+        if (targetUnitSelect) {
+          targetUnit = targetUnitSelect.value;
+          onSettingsChanged();
+        }
+      }
+
+      // Manual quality slider handlers
+      function onQualitySliderChange(val) {
+        if (manualQualityVal) manualQualityVal.innerText = `${val}%`;
+        onSettingsChanged();
+      }
+
+      function setManualQuality(val) {
+        if (manualQualitySlider) manualQualitySlider.value = val;
+        if (manualQualityVal) manualQualityVal.innerText = `${val}%`;
+        setOptimizationMode('manual-quality');
+        onSettingsChanged();
+      }
+
+      // Output Format Selector - Universal Persistence across formats
+      function setFormat(fmt) {
+        activeFormat = fmt;
+        updateFormatUI();
+        onSettingsChanged(); // Applies current target KB, dimensions & settings to the new format
+      }
+
+      function updateFormatUI() {
+        const formats = ['image/jpeg', 'image/webp', 'image/png', 'original'];
+        formats.forEach(f => {
+          const id = f === 'image/jpeg' ? 'fmt-jpeg' : f === 'image/webp' ? 'fmt-webp' : f === 'image/png' ? 'fmt-png' : 'fmt-original';
+          const btn = document.getElementById(id);
+          if (btn) {
+            if (activeFormat === f) {
+              btn.className = 'format-btn py-2 px-1 rounded-xl text-xs font-extrabold border border-yellow-400 bg-yellow-400/10 text-yellow-400 text-center flex flex-col items-center gap-0.5 shadow-sm';
+            } else {
+              btn.className = 'format-btn py-2 px-1 rounded-xl text-xs font-bold border border-zinc-800 bg-zinc-950 text-zinc-400 hover:text-white hover:border-zinc-700 text-center flex flex-col items-center gap-0.5 transition-colors';
+            }
+          }
+        });
+      }
+
+      // In-Place Preview Zoom Handlers
+      let inPlaceZoom = 100;
+
+      function adjustInPlaceZoom(deltaPct) {
+        inPlaceZoom = Math.max(100, Math.min(400, inPlaceZoom + deltaPct));
+        applyInPlaceZoom();
+      }
+
+      function resetInPlaceZoom() {
+        inPlaceZoom = 100;
+        applyInPlaceZoom();
+      }
+
+      function applyInPlaceZoom() {
+        const badge = document.getElementById('inplace-zoom-badge');
+        const origImg = document.getElementById('orig-img');
+        const optImg = document.getElementById('opt-img');
+        const origContainer = document.getElementById('orig-zoom-container');
+        const optContainer = document.getElementById('opt-zoom-container');
+
+        if (badge) badge.innerText = `${inPlaceZoom}%`;
+
+        const scaleVal = inPlaceZoom / 100;
+        if (origImg) {
+          origImg.style.transform = scaleVal === 1 ? 'none' : `scale(${scaleVal})`;
+        }
+        if (optImg) {
+          optImg.style.transform = scaleVal === 1 ? 'none' : `scale(${scaleVal})`;
+        }
+
+        if (origContainer && optContainer) {
+          if (scaleVal > 1) {
+            origContainer.classList.remove('cursor-zoom-in');
+            origContainer.classList.add('cursor-grab');
+            optContainer.classList.remove('cursor-zoom-in');
+            optContainer.classList.add('cursor-grab');
+          } else {
+            origContainer.classList.remove('cursor-grab');
+            origContainer.classList.add('cursor-zoom-in');
+            optContainer.classList.remove('cursor-grab');
+            optContainer.classList.add('cursor-zoom-in');
+          }
+        }
+      }
+
+      // Dimensions & Aspect Ratio
+      function toggleAspectLock() {
+        aspectLocked = !aspectLocked;
+        const iconClosed = document.getElementById('icon-lock-closed');
+        const iconOpen = document.getElementById('icon-lock-open');
+        const btn = document.getElementById('btn-lock-aspect');
+
+        if (aspectLocked) {
+          iconClosed.classList.remove('hidden');
+          iconOpen.classList.add('hidden');
+          btn.className = 'p-2 rounded-lg border border-yellow-400/40 bg-zinc-950 text-yellow-400 hover:bg-zinc-800 transition-colors';
+          btn.title = 'Aspect Ratio Locked';
+        } else {
+          iconClosed.classList.add('hidden');
+          iconOpen.classList.remove('hidden');
+          btn.className = 'p-2 rounded-lg border border-zinc-800 bg-zinc-950 text-zinc-500 hover:text-white transition-colors';
+          btn.title = 'Aspect Ratio Unlocked';
+        }
+      }
+
+      function onWidthChange() {
+        if (aspectLocked && originalWidth > 0) {
+          const newW = parseInt(dimW.value) || 0;
+          if (newW > 0) {
+            const ratio = originalHeight / originalWidth;
+            dimH.value = Math.round(newW * ratio);
+          }
+        }
+        onSettingsChanged();
+      }
+
+      function onHeightChange() {
+        if (aspectLocked && originalHeight > 0) {
+          const newH = parseInt(dimH.value) || 0;
+          if (newH > 0) {
+            const ratio = originalWidth / originalHeight;
+            dimW.value = Math.round(newH * ratio);
+          }
+        }
+        onSettingsChanged();
+      }
+
+      function resetDimensions() {
+        dimW.value = originalWidth;
+        dimH.value = originalHeight;
+        onSettingsChanged();
+      }
+
+      function applyScalePercent(pct) {
+        if (originalWidth > 0 && originalHeight > 0) {
+          dimW.value = Math.round(originalWidth * (pct / 100));
+          dimH.value = Math.round(originalHeight * (pct / 100));
+          onSettingsChanged();
+        }
+      }
+
+      function applyDimensionPreset(w, h) {
+        dimW.value = w;
+        dimH.value = h;
+        onSettingsChanged();
+      }
+
+      // Preview Mode Switcher (Side-by-Side vs. Interactive Split Slider)
+      function switchPreviewMode(mode) {
+        currentPreviewMode = mode;
+        const sideTab = document.getElementById('view-tab-side');
+        const splitTab = document.getElementById('view-tab-split');
+        const sideContainer = document.getElementById('preview-mode-side');
+        const splitContainer = document.getElementById('preview-mode-split');
+
+        if (mode === 'side') {
+          sideTab.className = 'px-2 sm:px-2.5 py-1 font-bold rounded-md bg-yellow-400 text-black transition-colors';
+          splitTab.className = 'px-2 sm:px-2.5 py-1 font-medium text-zinc-400 hover:text-white rounded-md transition-colors';
+          sideContainer.classList.remove('hidden');
+          splitContainer.classList.add('hidden');
+        } else {
+          splitTab.className = 'px-2 sm:px-2.5 py-1 font-bold rounded-md bg-yellow-400 text-black transition-colors';
+          sideTab.className = 'px-2 sm:px-2.5 py-1 font-medium text-zinc-400 hover:text-white rounded-md transition-colors';
+          splitContainer.classList.remove('hidden');
+          sideContainer.classList.add('hidden');
+          updateSplitSlider(50);
+        }
+      }
+
+      function updateSplitSlider(val) {
+        const wrapper = document.getElementById('split-opt-wrapper');
+        const divider = document.getElementById('split-divider-line');
+        if (wrapper && divider) {
+          wrapper.style.width = val + '%';
+          divider.style.left = val + '%';
+        }
+      }
+
+      // High-Resolution Zoom Modal Handlers
+      function openZoomModal() {
+        if (!processedUrl && !currentImageElement) return;
+
+        const modal = document.getElementById('zoom-modal');
+        if (!modal) return;
+
+        // Populate Images
+        const origSrc = document.getElementById('orig-img').src;
+        document.getElementById('zoom-opt-img').src = processedUrl;
+        document.getElementById('zoom-side-opt-img').src = processedUrl;
+        document.getElementById('zoom-side-orig-img').src = origSrc;
+        document.getElementById('zoom-filename-badge').innerText = currentFile?.name || 'photo.jpg';
+
+        document.getElementById('zoom-stats-orig').innerHTML = `Orig: <strong class="text-white">${formatBytes(originalSize)}</strong>`;
+        document.getElementById('zoom-stats-opt').innerHTML = `Optimized: <strong class="text-yellow-400 font-bold">${formatBytes(processedBlob?.size || 0)}</strong>`;
+        document.getElementById('zoom-stats-dims').innerText = `${dimW.value || originalWidth} × ${dimH.value || originalHeight} px`;
+
+        // Reset stage transformation
+        zoomLevel = 1.0;
+        zoomPanX = 0;
+        zoomPanY = 0;
+        applyZoomTransform();
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+
+      function closeZoomModal() {
+        const modal = document.getElementById('zoom-modal');
+        if (modal) {
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
+        }
+      }
+
+      function setModalViewMode(mode) {
+        modalViewMode = mode;
+        const optBtn = document.getElementById('modal-view-opt');
+        const sideBtn = document.getElementById('modal-view-side');
+        const optContainer = document.getElementById('zoom-view-opt-container');
+        const sideContainer = document.getElementById('zoom-view-side-container');
+
+        if (mode === 'opt') {
+          optBtn.className = 'px-2 py-1 font-bold rounded bg-yellow-400 text-black';
+          sideBtn.className = 'px-2 py-1 font-medium text-zinc-400 hover:text-white rounded';
+          optContainer.classList.remove('hidden');
+          optContainer.classList.add('flex');
+          sideContainer.classList.add('hidden');
+          sideContainer.classList.remove('flex');
+        } else {
+          sideBtn.className = 'px-2 py-1 font-bold rounded bg-yellow-400 text-black';
+          optBtn.className = 'px-2 py-1 font-medium text-zinc-400 hover:text-white rounded';
+          sideContainer.classList.remove('hidden');
+          sideContainer.classList.add('flex');
+          optContainer.classList.add('hidden');
+          optContainer.classList.remove('flex');
+        }
+      }
+
+      function adjustZoom(delta) {
+        zoomLevel = Math.max(0.4, Math.min(4.0, zoomLevel + delta));
+        applyZoomTransform();
+      }
+
+      function resetZoomStage() {
+        zoomLevel = 1.0;
+        zoomPanX = 0;
+        zoomPanY = 0;
+        applyZoomTransform();
+      }
+
+      function applyZoomTransform() {
+        const stage = document.getElementById('zoom-stage');
+        const text = document.getElementById('zoom-level-text');
+        if (stage) {
+          stage.style.transform = `translate(${zoomPanX}px, ${zoomPanY}px) scale(${zoomLevel})`;
+        }
+        if (text) {
+          text.innerText = `${Math.round(zoomLevel * 100)}%`;
+        }
+      }
+
+      // Zoom Modal Drag / Pan & Wheel Zoom listeners
+      const zoomViewport = document.getElementById('zoom-viewport');
+      if (zoomViewport) {
+        // Wheel to zoom
+        zoomViewport.addEventListener('wheel', (e) => {
+          e.preventDefault();
+          const delta = e.deltaY < 0 ? 0.15 : -0.15;
+          adjustZoom(delta);
+        }, { passive: false });
+
+        // Mouse Drag to pan
+        zoomViewport.addEventListener('mousedown', (e) => {
+          isZoomDragging = true;
+          zoomDragStartX = e.clientX - zoomPanX;
+          zoomDragStartY = e.clientY - zoomPanY;
+        });
+
+        window.addEventListener('mousemove', (e) => {
+          if (!isZoomDragging) return;
+          zoomPanX = e.clientX - zoomDragStartX;
+          zoomPanY = e.clientY - zoomDragStartY;
+          applyZoomTransform();
+        });
+
+        window.addEventListener('mouseup', () => {
+          isZoomDragging = false;
+        });
+
+        // Touch drag for mobile
+        zoomViewport.addEventListener('touchstart', (e) => {
+          if (e.touches.length === 1) {
+            isZoomDragging = true;
+            zoomDragStartX = e.touches[0].clientX - zoomPanX;
+            zoomDragStartY = e.touches[0].clientY - zoomPanY;
+          }
+        }, { passive: true });
+
+        zoomViewport.addEventListener('touchmove', (e) => {
+          if (!isZoomDragging || e.touches.length !== 1) return;
+          zoomPanX = e.touches[0].clientX - zoomDragStartX;
+          zoomPanY = e.touches[0].clientY - zoomDragStartY;
+          applyZoomTransform();
+        }, { passive: true });
+
+        zoomViewport.addEventListener('touchend', () => {
+          isZoomDragging = false;
+        });
+      }
+
+      // Download Action with Confetti
+      function downloadResult() {
+        if (!processedBlob || !processedUrl) return;
+        let ext = 'jpg';
+        if (activeFormat === 'image/png') ext = 'png';
+        else if (activeFormat === 'image/webp') ext = 'webp';
+        else if (activeFormat === 'image/jpeg') ext = 'jpg';
+        else {
+          ext = (originalMimeType === 'image/png') ? 'png' : (originalMimeType === 'image/webp') ? 'webp' : 'jpg';
+        }
+
+        const origName = currentFile?.name ? currentFile.name.replace(/\.[^/.]+$/, '') : 'photo';
+        const targetStr = optimizationMode === 'manual-quality' ? `q${manualQualitySlider.value}` : `${targetKbInput.value}${targetUnit.toLowerCase()}`;
+        const filename = `${origName}_optimized_${targetStr}.${ext}`;
+
+        const a = document.createElement('a');
+        a.href = processedUrl;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        // Confetti celebration
+        if (typeof confetti === 'function') {
+          confetti({
+            particleCount: 50,
+            spread: 60,
+            origin: { y: 0.8 }
+          });
+        }
+      }
+
+      // Copy to clipboard action
+      async function copyToClipboard() {
+        if (!processedBlob) return;
+        try {
+          if (navigator.clipboard && window.ClipboardItem) {
+            const item = new ClipboardItem({ [processedBlob.type]: processedBlob });
+            await navigator.clipboard.write([item]);
+            alert('Optimized image copied to clipboard!');
+          } else {
+            alert('Clipboard copy is not supported in this browser environment. Please use the Download button.');
+          }
+        } catch (err) {
+          alert('Could not copy image to clipboard. Please use Download button.');
+        }
+      }
+
+      // Reset workspace
+      function resetApp() {
+        currentFile = null;
+        currentImageElement = null;
+        originalBlob = null;
+        processedBlob = null;
+        if (processedUrl) URL.revokeObjectURL(processedUrl);
+        workspaceContainer.classList.add('hidden');
+        fileInput.value = '';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // Instant Sample Image Generators
+      function loadSample(type) {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+
+        if (type === 'signature') {
+          canvas.width = 600;
+          canvas.height = 240;
+          // Transparent background with realistic handwriting signature stroke
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.strokeStyle = '#0f172a';
+          ctx.lineWidth = 4;
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
+          
+          ctx.beginPath();
+          ctx.moveTo(80, 140);
+          ctx.bezierCurveTo(120, 40, 180, 60, 220, 130);
+          ctx.bezierCurveTo(240, 160, 280, 90, 320, 110);
+          ctx.bezierCurveTo(360, 130, 400, 70, 460, 100);
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.moveTo(100, 160);
+          ctx.lineTo(500, 160);
+          ctx.stroke();
+
+          ctx.font = 'bold 18px sans-serif';
+          ctx.fillStyle = '#64748b';
+          ctx.fillText('Authorized Signature • Sample', 160, 200);
+
+          canvas.toBlob((blob) => {
+            const file = new File([blob], 'sample_signature.png', { type: 'image/png' });
+            setTargetSize(20, 'KB');
+            handleFile(file);
+          }, 'image/png');
+
+        } else {
+          // Photo Portrait Sample
+          canvas.width = 800;
+          canvas.height = 1000;
+          
+          // Gradient Studio Background
+          const grad = ctx.createLinearGradient(0, 0, 800, 1000);
+          grad.addColorStop(0, '#3b82f6');
+          grad.addColorStop(0.5, '#1e40af');
+          grad.addColorStop(1, '#0f172a');
+          ctx.fillStyle = grad;
+          ctx.fillRect(0, 0, 800, 1000);
+
+          // Head silhouette
+          ctx.fillStyle = '#f8fafc';
+          ctx.beginPath();
+          ctx.arc(400, 380, 160, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Body shoulders
+          ctx.beginPath();
+          ctx.ellipse(400, 780, 280, 240, 0, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Passport border guide
+          ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+          ctx.lineWidth = 10;
+          ctx.strokeRect(40, 40, 720, 920);
+
+          ctx.font = 'bold 28px sans-serif';
+          ctx.fillStyle = '#94a3b8';
+          ctx.textAlign = 'center';
+          ctx.fillText('PASSPORT / EXAM PHOTO SPECIMEN', 400, 920);
+
+          canvas.toBlob((blob) => {
+            const file = new File([blob], 'sample_passport_photo.jpg', { type: 'image/jpeg' });
+            setTargetSize(50, 'KB');
+            handleFile(file);
+          }, 'image/jpeg', 0.95);
+        }
+      }
+
+      // Modal Handlers
+      function openPrivacyModal() {
+        const m = document.getElementById('privacy-modal');
+        if (m) {
+          m.classList.remove('hidden');
+          m.classList.add('flex');
+        }
+      }
+
+      function closePrivacyModal() {
+        const m = document.getElementById('privacy-modal');
+        if (m) {
+          m.classList.add('hidden');
+          m.classList.remove('flex');
+        }
+      }
+
+      function openFaqModal() {
+        const m = document.getElementById('faq-modal');
+        if (m) {
+          m.classList.remove('hidden');
+          m.classList.add('flex');
+        }
+      }
+
+      function closeFaqModal() {
+        const m = document.getElementById('faq-modal');
+        if (m) {
+          m.classList.add('hidden');
+          m.classList.remove('flex');
+        }
+      }
+
+      // Close modals when clicking backdrop
+      window.addEventListener('click', (e) => {
+        const pModal = document.getElementById('privacy-modal');
+        const fModal = document.getElementById('faq-modal');
+        const zModal = document.getElementById('zoom-modal');
+        if (e.target === pModal) closePrivacyModal();
+        if (e.target === fModal) closeFaqModal();
+        if (e.target === zModal) closeZoomModal();
+      });
+
+      // Close modals on Escape key
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closePrivacyModal();
+          closeFaqModal();
+          closeZoomModal();
+        }
+      });
+
+      // Wheel Zoom listeners on preview cards
+      const origBox = document.getElementById('orig-zoom-container');
+      const optBox = document.getElementById('opt-zoom-container');
+      [origBox, optBox].forEach(box => {
+        if (box) {
+          box.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const delta = e.deltaY < 0 ? 25 : -25;
+            adjustInPlaceZoom(delta);
+          }, { passive: false });
+        }
+      });
+
+      // Explicitly expose functions to window to prevent any ReferenceErrors
+      window.applyPreset = applyPreset;
+      window.setTargetSize = setTargetSize;
+      window.setTargetKB = setTargetKB;
+      window.setManualQuality = setManualQuality;
+      window.onQualitySliderChange = onQualitySliderChange;
+      window.onUnitChanged = onUnitChanged;
+      window.setFormat = setFormat;
+      window.setOptimizationMode = setOptimizationMode;
+      window.toggleAspectLock = toggleAspectLock;
+      window.onWidthChange = onWidthChange;
+      window.onHeightChange = onHeightChange;
+      window.resetDimensions = resetDimensions;
+      window.applyScalePercent = applyScalePercent;
+      window.applyDimensionPreset = applyDimensionPreset;
+      window.switchPreviewMode = switchPreviewMode;
+      window.updateSplitSlider = updateSplitSlider;
+      window.adjustInPlaceZoom = adjustInPlaceZoom;
+      window.resetInPlaceZoom = resetInPlaceZoom;
+      window.openZoomModal = openZoomModal;
+      window.closeZoomModal = closeZoomModal;
+      window.setModalViewMode = setModalViewMode;
+      window.adjustZoom = adjustZoom;
+      window.resetZoomStage = resetZoomStage;
+      window.downloadResult = downloadResult;
+      window.copyToClipboard = copyToClipboard;
+      window.resetApp = resetApp;
+      window.loadSample = loadSample;
+      window.openPrivacyModal = openPrivacyModal;
+      window.closePrivacyModal = closePrivacyModal;
+      window.openFaqModal = openFaqModal;
+      window.closeFaqModal = closeFaqModal;
+    </script>
+  </body>
+</html>
