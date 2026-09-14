@@ -1,5 +1,5 @@
 /**
- * FastImageKB - Free Client-Side Image Resizer & Compressor
+ * FastImageKB - Free Image Resizer & Compressor
  * 100% In-Browser HTML5 Canvas Processing Engine
  */
 
@@ -338,7 +338,7 @@ export default function App() {
         {/* Hero Title & Tool Tagline */}
         <div className="text-center space-y-2 max-w-3xl mx-auto">
           <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl text-white">
-            Client-Side Image Resizer & Target KB Compressor
+            Image Resizer & Target KB Compressor
           </h1>
           <p className="text-sm sm:text-base text-zinc-400">
             Shrink image file size to exact <span className="text-blue-400 font-semibold">20KB, 50KB, 100KB, or custom sizes</span> in milliseconds. Zero server latency, 100% browser-side privacy.

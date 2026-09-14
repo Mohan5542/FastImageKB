@@ -154,7 +154,7 @@ export async function compressImage(
   } 
   // MODE B: Target KB Mode (Intelligent Binary Search Algorithm)
   else {
-    const targetBytes = settings.targetKB * 1024;
+    const targetBytes = Math.max(1, settings.targetKB) * 1024;
     
     // For PNG (lossless format without native browser quality parameter)
     if (effectiveMimeType === 'image/png') {

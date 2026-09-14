@@ -55,9 +55,15 @@ export const ControlsPanel: React.FC<ControlsPanelProps> = ({
     onChange({ ...settings, outputFormat: format });
   };
 
-  const handleWidthChange = (val: number) => {
-    const newWidth = Math.max(1, Math.round(val));
-    if (settings.lockAspectRatio && originalWidth > 0 && originalHeight > 0) {
+  const handleWidthChange = (val: string) => {
+    if (val === '') {
+      onChange({ ...settings, width: 0 });
+      return;
+    }
+    const num = parseInt(val);
+    if (isNaN(num)) return;
+    const newWidth = Math.max(0, num);
+    if (settings.lockAspectRatio && originalWidth > 0 && originalHeight > 0 && newWidth > 0) {
       const ratio = originalHeight / originalWidth;
       const newHeight = Math.max(1, Math.round(newWidth * ratio));
       onChange({ ...settings, width: newWidth, height: newHeight });
@@ -66,9 +72,15 @@ export const ControlsPanel: React.FC<ControlsPanelProps> = ({
     }
   };
 
-  const handleHeightChange = (val: number) => {
-    const newHeight = Math.max(1, Math.round(val));
-    if (settings.lockAspectRatio && originalWidth > 0 && originalHeight > 0) {
+  const handleHeightChange = (val: string) => {
+    if (val === '') {
+      onChange({ ...settings, height: 0 });
+      return;
+    }
+    const num = parseInt(val);
+    if (isNaN(num)) return;
+    const newHeight = Math.max(0, num);
+    if (settings.lockAspectRatio && originalWidth > 0 && originalHeight > 0 && newHeight > 0) {
       const ratio = originalWidth / originalHeight;
       const newWidth = Math.max(1, Math.round(newHeight * ratio));
       onChange({ ...settings, width: newWidth, height: newHeight });
@@ -218,12 +230,17 @@ export const ControlsPanel: React.FC<ControlsPanelProps> = ({
                   min="5"
                   max="50000"
                   value={settings.targetKB || ''}
-                  onChange={(e) =>
-                    onChange({
-                      ...settings,
-                      targetKB: Math.max(1, parseInt(e.target.value) || 1),
-                    })
-                  }
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    if (val === '') {
+                      onChange({ ...settings, targetKB: 0 });
+                      return;
+                    }
+                    const num = parseInt(val);
+                    if (!isNaN(num)) {
+                      onChange({ ...settings, targetKB: Math.max(0, num) });
+                    }
+                  }}
                   className="w-full rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-1.5 pr-10 font-mono text-xs text-zinc-100 placeholder-zinc-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                   placeholder="e.g. 75"
                 />
@@ -338,7 +355,7 @@ export const ControlsPanel: React.FC<ControlsPanelProps> = ({
                 min="1"
                 max="10000"
                 value={settings.width || ''}
-                onChange={(e) => handleWidthChange(parseInt(e.target.value) || 1)}
+                onChange={(e) => handleWidthChange(e.target.value)}
                 className="w-full rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-1.5 pr-8 font-mono text-xs text-zinc-100 placeholder-zinc-500 focus:border-blue-500 focus:outline-none"
                 id="input-custom-width"
               />
@@ -386,7 +403,7 @@ export const ControlsPanel: React.FC<ControlsPanelProps> = ({
                 min="1"
                 max="10000"
                 value={settings.height || ''}
-                onChange={(e) => handleHeightChange(parseInt(e.target.value) || 1)}
+                onChange={(e) => handleHeightChange(e.target.value)}
                 className="w-full rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-1.5 pr-8 font-mono text-xs text-zinc-100 placeholder-zinc-500 focus:border-blue-500 focus:outline-none"
                 id="input-custom-height"
               />

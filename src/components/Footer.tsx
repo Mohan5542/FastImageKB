@@ -21,7 +21,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenFaq }) => {
                 FastImage<span className="text-blue-400">KB</span>
               </p>
               <p className="text-[11px] text-zinc-400">
-                Zero-Server Client-Side Image Resizer & Target KB Compressor
+                Zero-Server Image Resizer & Target KB Compressor
               </p>
             </div>
           </div>

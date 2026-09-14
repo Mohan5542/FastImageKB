@@ -23,7 +23,7 @@ export const AdPlacement: React.FC<AdPlacementProps> = ({ slot, className = '' }
         </div>
         
         <p className="mt-1 text-xs text-zinc-400">
-          Clean, privacy-first sponsor space supporting 100% free client-side tooling.
+          Clean, privacy-first sponsor space supporting 100% free tooling.
         </p>
       </div>
     </div>

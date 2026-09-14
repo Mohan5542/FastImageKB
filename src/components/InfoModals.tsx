@@ -34,7 +34,7 @@ export const PrivacyModal: React.FC<{ isOpen: boolean; onClose: () => void }> = 
   onClose,
 }) => {
   return (
-    <BaseModal isOpen={isOpen} onClose={onClose} title="100% Client-Side Privacy Guarantee">
+    <BaseModal isOpen={isOpen} onClose={onClose} title="100% Privacy Guarantee">
       <div className="space-y-4 text-xs text-zinc-300 leading-relaxed">
         <div className="flex items-center gap-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 p-3 text-emerald-300">
           <ShieldCheck className="h-6 w-6 flex-shrink-0" />

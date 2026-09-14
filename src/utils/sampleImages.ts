@@ -1,5 +1,5 @@
 /**
- * Utility to generate high-quality realistic test images purely client-side
+ * Utility to generate high-quality realistic test images purely locally
  * so users can test FastImageKB without uploading their own files.
  */
 

@@ -39,9 +39,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenFaq, onOpenPrivacy }) => {
           <div>
             <div className="flex items-center gap-2">
               <span className="text-lg font-bold tracking-tight text-white">FastImage<span className="text-blue-400">KB</span></span>
-              <span className="rounded-full border border-blue-500/30 bg-blue-500/10 px-2 py-0.5 text-[10px] font-semibold text-blue-300">
-                v2.0 Client-Side
-              </span>
             </div>
             <p className="text-xs text-zinc-400 hidden sm:block">
               Intelligent Target-KB Image Resizer & Compressor
@@ -54,7 +51,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenFaq, onOpenPrivacy }) => {
           <button
             onClick={onOpenPrivacy}
             className="flex items-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900/80 px-3 py-1.5 text-xs font-medium text-zinc-300 transition-colors hover:border-zinc-700 hover:bg-zinc-800 hover:text-white"
-            title="How browser client-side privacy works"
+            title="How browser privacy works"
             id="nav-privacy-btn"
           >
             <Lock className="h-3.5 w-3.5 text-emerald-400" />

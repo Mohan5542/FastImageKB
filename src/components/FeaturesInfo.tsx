@@ -45,7 +45,7 @@ export const FeaturesInfo: React.FC = () => {
   const highlights = [
     {
       icon: ShieldCheck,
-      title: '100% Client-Side Privacy',
+      title: '100% Privacy',
       desc: 'Your photos never touch a remote server or cloud database. All transformations occur exclusively inside your device memory.',
     },
     {
