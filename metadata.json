@@ -1,0 +1,6 @@
+{
+  "name": "FastImageKB",
+  "description": "Free client-side image resizer and compressor with intelligent KB target optimization.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
